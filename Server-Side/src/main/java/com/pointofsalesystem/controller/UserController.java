@@ -1,0 +1,39 @@
+package com.pointofsalesystem.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.pointofsalesystem.entity.User;
+import com.pointofsalesystem.service.UserService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+
+        User savedUser = userService.createUser(user);
+
+        if (savedUser == null) {
+            return ResponseEntity.badRequest().build();
+        }
+            return ResponseEntity.status(201).body(savedUser);
+
+    }
+
+}

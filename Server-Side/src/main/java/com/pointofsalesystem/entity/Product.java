@@ -11,24 +11,19 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    
     @Column(unique = true, nullable = false)
-    private String username;
+    private String name;
 
     @Column(nullable = false)
-    private String password;
+    private double price;
 
-    @Column(unique = true)
-    private String email;
-
-    @Column(unique = true)
-    private String phone;
-
-    private String address;
+    @Column(nullable = false)
+    private int quantity;
 
 }

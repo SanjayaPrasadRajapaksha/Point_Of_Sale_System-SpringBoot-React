@@ -7,5 +7,5 @@ import com.pointofsalesystem.entity.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository <Order, Long>{
-    
+  
 }

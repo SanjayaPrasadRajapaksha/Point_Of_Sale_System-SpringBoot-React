@@ -59,4 +59,18 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.save(exsistingOrder);
     }
 
+    @Override
+    public Order completeOrder(boolean complete, long order_id) {
+
+        Order exsistingOrder = orderRepository.findById(order_id).orElse(null);
+
+        if (exsistingOrder == null) {
+            return null;
+        }
+
+        exsistingOrder.setCompleteOrder(complete);
+
+        return orderRepository.save(exsistingOrder);
+    }
+
 }

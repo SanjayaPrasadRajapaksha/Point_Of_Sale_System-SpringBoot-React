@@ -39,4 +39,6 @@ public class Order {
     )
 
     private List<Product> orderedProducts;
+
+    private boolean completeOrder = false;
 }

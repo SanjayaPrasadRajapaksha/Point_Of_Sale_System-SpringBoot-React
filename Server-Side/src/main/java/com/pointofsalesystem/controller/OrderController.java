@@ -67,4 +67,12 @@ public class OrderController {
     public void deleteOrder(@PathVariable long id) {
         orderService.deleteOrder(id);
     }
+
+    @PostMapping("order/{id}")
+    public Order completeOrder(@PathVariable long id) {
+
+        return orderService.completeOrder(true, id);
+
+    }
+
 }

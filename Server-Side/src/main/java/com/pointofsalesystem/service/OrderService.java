@@ -19,4 +19,6 @@ public interface OrderService {
 
     Order addProductToOrder(long order_id, long product_id, double quantity);
 
+    Order completeOrder(boolean complete,long order_id);
+
 }

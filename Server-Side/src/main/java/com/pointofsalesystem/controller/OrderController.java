@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pointofsalesystem.dto.OrderedProductDto;
 import com.pointofsalesystem.entity.Order;
 import com.pointofsalesystem.service.OrderService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,26 +28,43 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
-    public Order postMethodName(@PathVariable long id) {
-        return orderService.getOrder(id);
+    public ResponseEntity<Order> postMethodName(@PathVariable long id) {
+        Order order = orderService.getOrder(id);
+
+        if (order == null) {
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.status(200).body(order);
+
     }
 
     @PostMapping("/order")
-    public Order creatOrder() {
+    public ResponseEntity<Order> creatOrder() {
         Order order = new Order();
 
         order.setTotalPrice(0);
         order.setOrderDate(LocalDateTime.now());
         order.setOrderedProducts(null);
 
-        return orderService.createOrder(order);
+        Order createOrder = orderService.createOrder(order);
+
+        return ResponseEntity.status(201).body(createOrder);
 
     }
 
     @PostMapping("/order/{id}/addProduct")
-    public Order addProductToOrder(@PathVariable long id, @RequestBody OrderedProductDto orderedProductDto) {
+    public ResponseEntity<Order> addProductToOrder(@PathVariable long id,
+            @RequestBody OrderedProductDto orderedProductDto) {
 
-        return orderService.addProductToOrder(id, orderedProductDto.getProduct_id(), orderedProductDto.getQuantity());
+        Order order = orderService.addProductToOrder(id, orderedProductDto.getProduct_id(),
+                orderedProductDto.getQuantity());
+
+        return ResponseEntity.status(201).body(order);
     }
 
+    @DeleteMapping("/order/{id}")
+    public void deleteOrder(@PathVariable long id) {
+        orderService.deleteOrder(id);
+    }
 }

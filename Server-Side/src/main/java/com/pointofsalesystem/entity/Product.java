@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,8 +35,11 @@ public class Product {
     private double quantity;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "orderedProducts")
+    @ManyToMany(mappedBy = "orderedProducts",targetEntity = Order.class)
     private List<Order> orders;
 
-
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

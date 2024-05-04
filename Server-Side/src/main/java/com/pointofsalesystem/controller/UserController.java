@@ -28,8 +28,14 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable long id) {
+        User user = userService.getUserById(id);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.status(200).body(user);
     }
 
     @PostMapping("/user")

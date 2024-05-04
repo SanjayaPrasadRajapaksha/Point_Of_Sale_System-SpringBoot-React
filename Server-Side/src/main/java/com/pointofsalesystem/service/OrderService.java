@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.pointofsalesystem.entity.Order;
-import com.pointofsalesystem.entity.Product;
+
 
 @Service
 public interface OrderService {

@@ -3,6 +3,7 @@ package com.pointofsalesystem.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,11 +31,11 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-        name = "order_products",
+        name = "Order_Products",
         joinColumns = @JoinColumn(name = "order_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")
+        inverseJoinColumns = @JoinColumn(name = "product_id")  
     )
 
     private List<Product> orderedProducts;

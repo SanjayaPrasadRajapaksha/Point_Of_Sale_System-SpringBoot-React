@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order completeOrder(boolean complete, long order_id) {
+    public Order completeOrder(boolean completeOrder, long order_id) {
 
         Order exsistingOrder = orderRepository.findById(order_id).orElse(null);
 
@@ -68,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
 
-        exsistingOrder.setCompleteOrder(complete);
+        exsistingOrder.setCompleteOrder(completeOrder);
 
         return orderRepository.save(exsistingOrder);
     }

@@ -28,7 +28,7 @@ public class OrderController {
     }
 
     @GetMapping("/order/{id}")
-    public ResponseEntity<Order> postMethodName(@PathVariable long id) {
+    public ResponseEntity<Order> getOrder(@PathVariable long id) {
         Order order = orderService.getOrder(id);
 
         if (order == null) {
@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<Order> creatOrder() {
+    public ResponseEntity<Order> createOrder() {
         Order order = new Order();
 
         order.setTotalPrice(0);
@@ -69,10 +69,15 @@ public class OrderController {
     }
 
     @PostMapping("order/{id}")
-    public Order completeOrder(@PathVariable long id) {
+    public ResponseEntity<Order> completeOrder(@PathVariable long id) {
 
-        return orderService.completeOrder(true, id);
+        Order order = orderService.completeOrder(true, id);
 
+        if (order == null) {
+            return ResponseEntity.status(404).build();
+        }
+
+        return ResponseEntity.status(200).body(order);
     }
 
 }

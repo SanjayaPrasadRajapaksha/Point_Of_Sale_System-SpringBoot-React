@@ -39,7 +39,7 @@ public class Product {
     private List<Order> orders;
 
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "category_id")
     private Category category;
 }

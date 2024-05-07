@@ -12,6 +12,7 @@ import com.pointofsalesystem.entity.Product;
 import com.pointofsalesystem.service.CategoryService;
 import com.pointofsalesystem.service.ProductService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired
@@ -60,9 +62,18 @@ public class ProductController {
     }
 
     @PutMapping("product/{id}")
-    public Product updateProduct(@PathVariable long id, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable long id, @RequestBody ProductDto productDto) {
 
-        return productService.updateProduct(product, id);
+        Category category = categoryService.getCategory(productDto.getCategory_id());
+
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setQuantity(productDto.getQuantity());
+        product.setCategory(category);
+        return productService.updateProduct(product,id);
+
+       
     }
 
     @DeleteMapping("/product/{id}")

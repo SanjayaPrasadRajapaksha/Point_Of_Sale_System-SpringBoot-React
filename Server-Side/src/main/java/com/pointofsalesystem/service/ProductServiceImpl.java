@@ -9,42 +9,43 @@ import com.pointofsalesystem.entity.Product;
 import com.pointofsalesystem.repository.ProductRepository;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+  @Autowired
+  private ProductRepository productRepository;
 
-    @Override
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+  @Override
+  public List<Product> getAllProducts() {
+    return productRepository.findAll();
+  }
+
+  @Override
+  public Product getProductById(long id) {
+    return productRepository.findById(id).orElse(null);
+  }
+
+  @Override
+  public Product createProduct(Product product) {
+    return productRepository.save(product);
+  }
+
+  @Override
+  public Product updateProduct(Product product, long id) {
+    Product exsistingProduct = productRepository.findById(id).orElse(null);
+
+    if (product == null) {
+      return null;
     }
+    exsistingProduct.setName(product.getName());
+    exsistingProduct.setPrice(product.getPrice());
+    exsistingProduct.setQuantity(product.getQuantity());
+    exsistingProduct.setCategory(product.getCategory());
+    return productRepository.save(exsistingProduct);
+  }
 
-    @Override
-    public Product getProductById(long id) {
-      return productRepository.findById(id).orElse(null);
-    }
+  @Override
+  public void deleteProduct(long id) {
+    productRepository.deleteById(id);
+  }
 
-    @Override
-    public Product createProduct(Product product) {
-       return productRepository.save(product);
-    }
-
-    @Override
-    public Product updateProduct(Product Product, long id) {
-       Product product = productRepository.findById(id).orElse(null);
-
-       if (product == null) {
-           return null;
-       }
-       product.setName(Product.getName());
-       product.setPrice(Product.getPrice());
-       product.setQuantity(Product.getQuantity());
-       return productRepository.save(product);
-    }
-
-    @Override
-    public void deleteProduct(long id) {
-      productRepository.deleteById(id);
-    }
-    
 }

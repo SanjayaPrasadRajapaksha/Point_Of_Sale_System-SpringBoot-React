@@ -7,6 +7,9 @@ import EditUser from './EditUser';
 import Product from './Product';
 import EditProduct from './EditProduct';
 import CreateProduct from './CreateProduct';
+import Category from './Category';
+import CreateCategory from './CreateCategory';
+import EditCategory from './EditCategory';
 
 function App() {
 return(
@@ -19,6 +22,10 @@ return(
   <Route path='/products' element={<Product/>}/>
   <Route path='/createProduct' element={<CreateProduct/>}/>
   <Route path='/products/:id/editProduct' element={<EditProduct/>}/>
+
+  <Route path='/categories' element={<Category/>}/>
+  <Route path='/createCategory' element={<CreateCategory/>}/>
+  <Route path='/categories/:id/editCategory' element={<EditCategory/>}/>
 </Routes>
 </BrowserRouter>
 )

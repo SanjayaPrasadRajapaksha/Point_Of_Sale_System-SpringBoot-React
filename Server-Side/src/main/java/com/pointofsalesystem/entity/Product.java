@@ -35,11 +35,11 @@ public class Product {
     private double quantity;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "orderedProducts",targetEntity = Order.class)
+    @ManyToMany(mappedBy = "orderedProducts")
     private List<Order> orders;
 
     
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 }

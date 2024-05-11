@@ -45,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public void deleteProduct(long id) {
+    Product exsistingProduct = productRepository.findById(id).orElse(null);
+    exsistingProduct.setCategory(null);
     productRepository.deleteById(id);
   }
 

@@ -10,25 +10,30 @@ import CreateProduct from './CreateProduct';
 import Category from './Category';
 import CreateCategory from './CreateCategory';
 import EditCategory from './EditCategory';
+import Order from './Order';
+import EditOrder from './EditOrder';
 
 function App() {
-return(
-<BrowserRouter>
-<Routes>
-  <Route path='/users' element={<User/>}/>
-  <Route path='/createUser' element={<CreateUser/>}/>
-  <Route path='/users/:id/editUser' element={<EditUser/>}/>
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/users' element={<User />} />
+        <Route path='/createUser' element={<CreateUser />} />
+        <Route path='/users/:id/editUser' element={<EditUser />} />
 
-  <Route path='/products' element={<Product/>}/>
-  <Route path='/createProduct' element={<CreateProduct/>}/>
-  <Route path='/products/:id/editProduct' element={<EditProduct/>}/>
+        <Route path='/products' element={<Product />} />
+        <Route path='/createProduct' element={<CreateProduct />} />
+        <Route path='/products/:id/editProduct' element={<EditProduct />} />
 
-  <Route path='/categories' element={<Category/>}/>
-  <Route path='/createCategory' element={<CreateCategory/>}/>
-  <Route path='/categories/:id/editCategory' element={<EditCategory/>}/>
-</Routes>
-</BrowserRouter>
-)
+        <Route path='/categories' element={<Category />} />
+        <Route path='/createCategory' element={<CreateCategory />} />
+        <Route path='/categories/:id/editCategory' element={<EditCategory />} />
+
+        <Route path='/orders' element={<Order />} />
+        <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;

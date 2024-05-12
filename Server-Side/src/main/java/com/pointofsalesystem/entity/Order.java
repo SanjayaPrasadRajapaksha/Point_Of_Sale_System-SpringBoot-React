@@ -31,12 +31,8 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "Order_Products",
-        joinColumns = @JoinColumn(name = "order_id"),
-        inverseJoinColumns = @JoinColumn(name = "product_id")  
-    )
+    @ManyToMany
+    @JoinTable(name = "Order_Products", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
 
     private List<Product> orderedProducts;
 

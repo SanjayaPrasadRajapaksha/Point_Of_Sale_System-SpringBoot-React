@@ -5,20 +5,20 @@ import { Link, useParams } from 'react-router-dom';
 function EditCategory() {
     const [category_name, setCategory_name] = useState("");
 
-    const {id} = useParams();
+    const { id } = useParams();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        axios.get(`http://localhost:8080/category/${id}` )
-           .then(response => {
+        axios.get(`http://localhost:8080/category/${id}`)
+            .then(response => {
                 setCategory_name(response.data.category_name);
             })
-           .catch(error => {
+            .catch(error => {
                 console.log(error);
             });
-    },[id]);
+    }, [id]);
 
-    function clearCategory(){
+    function clearCategory() {
         setCategory_name("");
     }
 
@@ -62,7 +62,7 @@ function EditCategory() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="category_name">Category Name</label>
-                                                    <input type="text" id="category_name" class="form-control form-control-lg" required onChange={handleCategory} value={category_name}/>
+                                                    <input type="text" id="category_name" class="form-control form-control-lg" required onChange={handleCategory} value={category_name} />
                                                 </div>
 
                                             </div>
@@ -71,9 +71,9 @@ function EditCategory() {
                                         <div class="mt-2 pt-2 ">
                                             <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={()=>{
+                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
                                                 clearCategory();
-                                        }} required >Reset</button>
+                                            }} required >Reset</button>
                                             <br />
                                             <br />
                                             <Link to='/categories' class='back'>Back</Link>

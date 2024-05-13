@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
+
 
 function Order() {
 
@@ -23,18 +25,14 @@ function Order() {
 
     return (
         <div>
-
+            <Navbar />
             <section class="vh-100 gradient-custom scroll">
                 <div className="container h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-12 col-xl-12 ">
                             <div class="card shadow card-registration rounded-15" >
                                 <div class="card-body p-4 p-md-5 scroll">
-                                    <div className='d-flex justify-content-between'>
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE ORDERS</h3>
-                                    <Link to='/' class='back'>back to dashboard</Link>
-                                    </div>
-                                  
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
                                             axios.post('http://localhost:8080/order')
@@ -47,9 +45,9 @@ function Order() {
                                                 });
 
                                         }}>Create Orders</button>
-                                        
+
                                     </div>
-                                    <br/>
+                                    <br />
                                     <table className="table table-striped table-dark ">
                                         <thead>
                                             <tr className='text-center'>
@@ -70,11 +68,11 @@ function Order() {
                                                             <td>{orders.orderDate}</td>
                                                             <td>{orders.orderedProducts.length}</td>
                                                             <td>{orders.totalPrice}</td>
-                                                            <td>{orders.completeOrder ? 'Placed' : 'pending'}</td>
+                                                            <td>{orders.completeOrder ? 'Paid' : 'pending'}</td>
 
                                                             <td>
-                                                                
-                                                                <button  disabled={orders.completeOrder ? true : false}  type='button' className='btn btn-success' onClick={() => {
+
+                                                                <button disabled={orders.completeOrder ? true : false} type='button' className='btn btn-success' onClick={() => {
                                                                     navigate(`/orders/${orders.id}/editOrder`)
                                                                 }}>Edit</button>
                                                                 &nbsp;
@@ -96,14 +94,13 @@ function Order() {
                                             }
                                         </tbody>
                                     </table>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
         </div>
 
     )

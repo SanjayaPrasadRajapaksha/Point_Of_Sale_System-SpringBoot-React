@@ -12,14 +12,16 @@ import CreateCategory from './CreateCategory';
 import EditCategory from './EditCategory';
 import Order from './Order';
 import EditOrder from './EditOrder';
-
 import Dashboard from './dashboard/Dashboard';
+
+
 
 function App() {
   return (
 <div>
 <BrowserRouter>
         <Routes>
+        
           <Route path='/users' element={<User />} />
           <Route path='/createUser' element={<CreateUser />} />
           <Route path='/users/:id/editUser' element={<EditUser />} />

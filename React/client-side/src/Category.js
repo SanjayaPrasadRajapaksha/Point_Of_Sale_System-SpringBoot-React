@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function Category() {
     const [category, setCategory] = useState();
@@ -22,17 +23,14 @@ function Category() {
 
     return (
         <div>
-
+            <Navbar />
             <section class="vh-100 gradient-custom scroll">
                 <div class="container h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-12 col-xl-12">
                             <div class="card shadow card-registration rounded-15 " >
                                 <div class="card-body p-4 p-md-5 scroll">
-                                    <div className='d-flex justify-content-between'>
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE CATEGORIES</h3>
-                                    <Link to='/' class='back'>back to dashboard</Link>
-                                </div>
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
                                             navigate('/createCategory')

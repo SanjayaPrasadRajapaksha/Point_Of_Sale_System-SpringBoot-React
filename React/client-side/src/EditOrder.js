@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function EditOrder() {
 
@@ -8,7 +8,8 @@ function EditOrder() {
     const [order, setOrder] = useState('');
     const [product, setProduct] = useState('');
     const [quantity, setQuantity] = useState('');
-  
+
+
     const navigate = useNavigate();
 
 
@@ -30,10 +31,11 @@ function EditOrder() {
             .catch(error => {
                 console.log(error);
             });
-    }, [])
+    },)
 
     function handleQty(event) {
         setQuantity(event.target.value);
+
     }
 
     function refreshProducts() {
@@ -120,14 +122,17 @@ function EditOrder() {
                                                                                 Qty : {product.quantity}
                                                                             </div>
                                                                             <div>
+
                                                                                 <input size={7} className='justify-content: center' placeholder='quantity' id='qty_field' onChange={handleQty} />
+
                                                                                 &nbsp;
 
                                                                                 <button className='btn btn-primary' id='addBtn' onClick={() => {
 
+
                                                                                     if ((product.quantity - quantity) < 0) {
                                                                                         alert("Product is out of stock");
-                                                                                        document.getElementById('qty_field').value = "";
+
 
                                                                                     } else {
 
@@ -138,11 +143,11 @@ function EditOrder() {
                                                                                         axios.post(`http://localhost:8080/order/${id}/addProduct`, data)
                                                                                             .then(function (response) {
                                                                                                 setOrder(response.data);
-                                                                                                document.getElementById('qty_field').value = "";
-
+                                                                                                alert("Product Add Successfully..!")
 
                                                                                             })
                                                                                             .catch(function (error) {
+                                                                                                alert("Product Add Fail..!")
                                                                                                 console.log(error);
                                                                                             });
 
@@ -156,8 +161,8 @@ function EditOrder() {
 
                                                                                         axios.put('http://localhost:8080/product/' + product.id, productData)
                                                                                             .then(function (response) {
-
                                                                                                 refreshProducts();
+
                                                                                             })
                                                                                             .catch(function (err) {
                                                                                                 console.log(err);
@@ -178,23 +183,25 @@ function EditOrder() {
                                                 </div>
 
                                             </div>
-                                            <button className=' btn btn-success text-right d-flex justify-content-end' onClick={()=>{
+                                            <button className=' btn btn-success text-right d-flex justify-content-end' onClick={() => {
                                                 axios.post(`http://localhost:8080/order/${id}`)
-                                                 .then(function (response) {
-                                                     alert("Order Place Successfullly..!")
-                                                     navigate('/orders')
-                                                     
-                                                 })
-                                                 .catch(function (error) {
-                                                     console.log(error)
-                                                 })  
+                                                    .then(function (response) {
+                                                        alert("Order Place Successfullly..!")
+                                                        navigate('/orders')
+
+                                                    })
+                                                    .catch(function (error) {
+                                                        alert("Order Place Fail..!")
+                                                        console.log(error)
+                                                    })
                                             }}>Place order</button>
+                                            <Link to='/orders' className='back'>Back</Link>
                                         </div>
 
                                     }
-                                   
+
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

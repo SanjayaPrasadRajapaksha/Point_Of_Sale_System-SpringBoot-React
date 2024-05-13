@@ -59,12 +59,12 @@ function EditProduct() {
         axios.put(`http://localhost:8080/product/${id}`, data)
             .then(response => {
                 if (response.request.status === 200) {
-                    alert("Product Edit Successfully");
+                    alert("Product Edit Successfully..!");
                     clearProduct();
                 }
             })
             .catch(error => {
-                alert("Product Edit Fail");
+                alert("Product Edit Fail..!");
                 clearProduct();
             });
     }

@@ -15,12 +15,12 @@ function CreateCategory() {
         axios.post("http://localhost:8080/category", data)
             .then(response => {
                 if (response.request.status === 201) {
-                    alert("Category Create Successfully");
+                    alert("Category Create Successfully..!");
                     document.getElementById('createCategory').reset()
                 }
             })
             .catch(error => {
-                alert("Category Create Fail");
+                alert("Category Create Fail..!");
                 document.getElementById('createCategory').reset()
             });
     }

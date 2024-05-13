@@ -49,12 +49,12 @@ function EditUser() {
         axios.put(`http://localhost:8080/user/${id}`, data)
             .then(response => {
                 if (response.request.status === 200) {
-                    alert("User Edit Successfully");
+                    alert("User Edit Successfully..!");
                     clearUser();
                 }
             })
             .catch(error => {
-                alert("User Edit Fail");
+                alert("User Edit Fail..!");
                 clearUser();
             });
     }

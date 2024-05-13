@@ -12,6 +12,7 @@ import CreateCategory from './CreateCategory';
 import EditCategory from './EditCategory';
 import Order from './Order';
 import EditOrder from './EditOrder';
+import Home from './Home';
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
 
         <Route path='/orders' element={<Order />} />
         <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
+
+        <Route path='/' element={<Home/>}/>
       </Routes>
     </BrowserRouter>
   )

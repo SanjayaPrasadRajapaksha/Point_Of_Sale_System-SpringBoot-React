@@ -32,12 +32,12 @@ function CreateProduct() {
         axios.post("http://localhost:8080/product", data)
             .then(response => {
                 if (response.request.status === 201) {
-                    alert("Product Create Successfully");
+                    alert("Product Create Successfully..!");
                     document.getElementById('createProduct').reset()
                 }
             })
             .catch(error => {
-                alert("Product Create Fail");
+                alert("Product Create Fail..!");
                 document.getElementById('createProduct').reset()
             });
     }
@@ -101,7 +101,7 @@ function CreateProduct() {
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label select-label">Choose option</label>
                                                 <select class="select form-control-lg" onChange={handleCategory} required>
-                                                    <option value="1" disabled>Choose your option</option>
+                                                    <option value="1" disabled selected>Choose your option</option>
 
                                                     {
                                                         categories && categories.map(category => {
@@ -124,7 +124,7 @@ function CreateProduct() {
                                             <input class="btn btn-dark btn-lg" type="reset" value="Reset" required />
                                             <br />
                                             <br />
-                                            <Link to='/products' class='back'>Back</Link>
+                                            <Link to='/products' className='back'>Back</Link>
                                         </div>
 
                                     </form>

@@ -23,12 +23,12 @@ function CreateUser() {
         axios.post("http://localhost:8080/user", data)
             .then(response => {
                 if (response.request.status === 201) {
-                    alert("User Create Successfully");
+                    alert("User Create Successfully..!");
                     document.getElementById('createUser').reset()
                 }
             })
             .catch(error => {
-                alert("User Create Fail");
+                alert("User Create Fail..!");
                 document.getElementById('createUser').reset()
             });
     }

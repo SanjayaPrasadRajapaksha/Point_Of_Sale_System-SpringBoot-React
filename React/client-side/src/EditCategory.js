@@ -32,12 +32,12 @@ function EditCategory() {
         axios.put(`http://localhost:8080/category/${id}`, data)
             .then(response => {
                 if (response.request.status === 200) {
-                    alert("Category Edit Successfully");
+                    alert("Category Edit Successfully..!");
                     clearCategory();
                 }
             })
             .catch(error => {
-                alert("User Edit Fail");
+                alert("User Edit Fail..!");
                 clearCategory();
             });
     }

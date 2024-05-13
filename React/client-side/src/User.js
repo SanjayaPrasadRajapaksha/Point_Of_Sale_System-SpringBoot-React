@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const User = () => {
@@ -25,19 +25,23 @@ const User = () => {
     return (
         <div>
 
-            <section class="vh-100 gradient-custom  bg-secondary bg-gradient scroll">
-                <div class="container py-2 h-100">
+            <section class="vh-100 gradient-custom scroll">
+                <div class="container h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-12 col-xl-12">
-                            <div class="card shadow-2-strong card-registration rounded-15" >
+                            <div class="card shadow card-registration rounded-15" >
                                 <div class="card-body p-4 p-md-5">
-                                    <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">Manage User</h3>
+                                <div className='d-flex justify-content-between'>
+                                    <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE USERS</h3>
+                                    <Link to='/' class='back'>back to dashboard</Link>
+                                    </div>
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
                                             navigate('/createUser')
                                         }}>Create User</button>
                                     </div>
-                                    <table class="table table-striped bg-light">
+                                    <br/>
+                                    <table class="table table-striped table-dark">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>#</th>
@@ -48,6 +52,7 @@ const User = () => {
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
+                                    
                                         <tbody>
                                             {
                                                 users && users.map(user => {
@@ -81,6 +86,7 @@ const User = () => {
                                             }
                                         </tbody>
                                     </table>
+                                  
                                 </div>
                             </div>
                         </div>

@@ -48,15 +48,24 @@ function EditOrder() {
             .catch(error => {
                 console.log(error);
             });
+
+        axios.get(`http://localhost:8080/order/${id}`)
+            .then(response => {
+                setOrder(response.data);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     return (
         <div>
-            <section class="vh-100 gradient-custom  bg-secondary bg-gradient">
+            <section class="vh-100 gradient-custom scroll">
                 <div class="container py-2 h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-mb-12">
-                            <div class="card shadow-2-strong card-registration round" >
+                            <div class="card shadow card-registration round" >
                                 <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Product to Order #{id}</h3>
 
@@ -75,7 +84,7 @@ function EditOrder() {
                                             </div>
 
                                             <div className='row '>
-                                                <div className='col-md-9 scroll text-center'>
+                                                <div className='col-md-9 scroll-2 text-center'>
                                                     <table className='table table-striped'>
                                                         <thead>
                                                             <tr>
@@ -104,7 +113,7 @@ function EditOrder() {
                                                 </div>
 
                                                 <div className='col-md-3'>
-                                                    <div className='scroll justify-content-center align-items-center'>
+                                                    <div className='scroll-2 justify-content-center align-items-center'>
                                                         {
                                                             product && product.map((product) => {
                                                                 return (
@@ -127,10 +136,10 @@ function EditOrder() {
 
                                                                                 &nbsp;
 
-                                                                                <button className='btn btn-primary' id='addBtn' onClick={() => {
+                                                                                <button  className='btn btn-primary' id='addBtn' onClick={() => {
 
 
-                                                                                    if ((product.quantity - quantity) < 0) {
+                                                                                    if ((product.quantity - quantity) < 0 || product.quantity === 0) {
                                                                                         alert("Product is out of stock");
 
 
@@ -183,6 +192,9 @@ function EditOrder() {
                                                 </div>
 
                                             </div>
+                                            <br />
+                                           <div className='d-flex justify-content-between'>
+                                           <Link to='/orders' className='back'>back</Link>
                                             <button className=' btn btn-success text-right d-flex justify-content-end' onClick={() => {
                                                 axios.post(`http://localhost:8080/order/${id}`)
                                                     .then(function (response) {
@@ -195,7 +207,8 @@ function EditOrder() {
                                                         console.log(error)
                                                     })
                                             }}>Place order</button>
-                                            <Link to='/orders' className='back'>Back</Link>
+                                           </div>
+                                            
                                         </div>
 
                                     }

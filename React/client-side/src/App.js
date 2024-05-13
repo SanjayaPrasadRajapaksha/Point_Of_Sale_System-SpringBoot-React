@@ -12,30 +12,35 @@ import CreateCategory from './CreateCategory';
 import EditCategory from './EditCategory';
 import Order from './Order';
 import EditOrder from './EditOrder';
-import Home from './Home';
+
+import Dashboard from './dashboard/Dashboard';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/users' element={<User />} />
-        <Route path='/createUser' element={<CreateUser />} />
-        <Route path='/users/:id/editUser' element={<EditUser />} />
+<div>
+<BrowserRouter>
+        <Routes>
+          <Route path='/users' element={<User />} />
+          <Route path='/createUser' element={<CreateUser />} />
+          <Route path='/users/:id/editUser' element={<EditUser />} />
 
-        <Route path='/products' element={<Product />} />
-        <Route path='/createProduct' element={<CreateProduct />} />
-        <Route path='/products/:id/editProduct' element={<EditProduct />} />
+          <Route path='/products' element={<Product />} />
+          <Route path='/createProduct' element={<CreateProduct />} />
+          <Route path='/products/:id/editProduct' element={<EditProduct />} />
 
-        <Route path='/categories' element={<Category />} />
-        <Route path='/createCategory' element={<CreateCategory />} />
-        <Route path='/categories/:id/editCategory' element={<EditCategory />} />
+          <Route path='/categories' element={<Category />} />
+          <Route path='/createCategory' element={<CreateCategory />} />
+          <Route path='/categories/:id/editCategory' element={<EditCategory />} />
 
-        <Route path='/orders' element={<Order />} />
-        <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
+          <Route path='/orders' element={<Order />} />
+          <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
 
-        <Route path='/' element={<Home/>}/>
-      </Routes>
-    </BrowserRouter>
+          <Route path='/' element={<Dashboard/>} />
+        </Routes>
+      </BrowserRouter>
+</div>
+     
+
   )
 }
 

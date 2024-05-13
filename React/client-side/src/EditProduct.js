@@ -90,7 +90,7 @@ function EditProduct() {
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-9 col-xl-7">
-                            <div class="card shadow-2-strong card-registration round" >
+                            <div class="card shadow card-registration round" >
                                 <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Product Form</h3>
                                     <form onSubmit={updateProduct} id='updateProduct'>
@@ -152,7 +152,7 @@ function EditProduct() {
                                             }} required >Reset</button>
                                             <br />
                                             <br />
-                                            <Link to='/products' class='back'>Back</Link>
+                                            <Link to='/products' class='back'>back</Link>
                                         </div>
 
                                     </form>

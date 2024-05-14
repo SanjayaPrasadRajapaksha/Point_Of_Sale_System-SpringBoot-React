@@ -55,11 +55,11 @@ function CreateUser() {
 
     return (
         <div>
-            <section class="vh-100 gradient-custom  bg-secondary bg-gradient">
-                <div class="container py-2 h-100 ">
+            <section class="vh-100 gradient-custom">
+                <div class="container h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-9 col-xl-7">
-                            <div class="card shadow card-registration round" >
+                            <div class="card shadow-lg card-registration round" >
                                 <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create User Form</h3>
                                     <form onSubmit={createUser} id='createUser'>
@@ -89,7 +89,7 @@ function CreateUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="username" class="form-control form-control-lg" required onChange={handleEmail} />
+                                                    <input type="email" id="email" class="form-control form-control-lg" required onChange={handleEmail} />
 
                                                 </div>
 

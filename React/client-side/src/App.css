@@ -1,7 +1,11 @@
 .gradient-custom {
-  background-color: #1d2634;
+  background-color:rgba(255, 0, 0, 0.1);
 }
 
+.bg-secondary {
+
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
   font-size: 1rem;
   line-height: 2.15;
@@ -34,10 +38,12 @@
   border-radius: 15px !important;
 }
 
-.shadow {
-  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35) !important;
+.shadow-lg {
+ 
+  background-color:rgba(255, 0, 0, 0.0) !important; 
 
 }
+
 
 /* dashboard */
 
@@ -67,12 +73,11 @@
 }
 
 .back-icon {
-  background-color: #1d2634;
-  color: #9e9ea4;
+  color:rgba(255, 0, 0, 0.7);
 }
 
 .navbar {
-  background-color: #1d2634;
+  background-color:rgba(255, 0, 0, 0.1);;
   color: #9e9ea4;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35) !important;
 
@@ -163,11 +168,6 @@
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
-  /*
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
   z-index: 12 !important;
 }
 
@@ -203,7 +203,7 @@
 }
 
 .card:first-child {
-  background-color: #faebd7;
+  background-color:rgba(0, 217, 255, 0.596);
 }
 
 .card:nth-child(2) {

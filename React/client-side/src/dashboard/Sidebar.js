@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
-    BsBoxArrowRight, BsBoxArrowLeft , BsFillGearFill,BsBoxFill  
+    BsBoxArrowRight, BsBoxArrowLeft , BsPersonCircle,BsBoxFill  
 }
     from 'react-icons/bs'
 import { Link } from 'react-router-dom'
@@ -42,9 +42,16 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
 
                     </li>
+
+                    <li className='sidebar-list-item'>
+                        <Link to='/customers'>
+                            <BsPeopleFill className='icon' /> Customers
+                        </Link>
+
+                    </li>
                     <li className='sidebar-list-item'>
                         <Link to='/users'>
-                            <BsPeopleFill className='icon' /> Users
+                            <BsPersonCircle className='icon' /> Users
                         </Link>
                     </li>
                     <li className='sidebar-list-item'>
@@ -59,12 +66,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
 
                     </li>
-                    <li className='sidebar-list-item'>
-                        <Link to=''>
-                            <BsFillGearFill className='icon' /> Setting
-                        </Link>
-
-                    </li>
+                  
                 </ul>
             </aside>
 

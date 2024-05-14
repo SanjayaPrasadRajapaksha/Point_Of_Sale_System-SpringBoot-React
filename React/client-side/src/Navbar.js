@@ -12,7 +12,7 @@ function Navbar() {
                     <BsArrowLeftCircleFill  className='icon back-icon'/>
                 </Link>
             </div>
-            <div className='header-right'>
+            <div className='header-right back-icon'>
                 <BsFillBellFill className='icon' />
                 <BsFillEnvelopeFill className='icon' />
                 <BsPersonCircle className='icon' />

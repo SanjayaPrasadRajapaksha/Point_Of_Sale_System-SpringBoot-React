@@ -13,6 +13,9 @@ import EditCategory from './EditCategory';
 import Order from './Order';
 import EditOrder from './EditOrder';
 import Dashboard from './dashboard/Dashboard';
+import Customer from './Customer';
+import CreateCustomer from './CreateCustomer';
+import EditCustomer from './EditCustomer';
 
 
 
@@ -36,6 +39,10 @@ function App() {
 
           <Route path='/orders' element={<Order />} />
           <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
+
+          <Route path='/customers' element={<Customer />} />
+          <Route path='/createCustomer' element={<CreateCustomer />} />
+          <Route path='/customers/:id/editCustomer' element={<EditCustomer />} />
 
           <Route path='/' element={<Dashboard/>} />
         </Routes>

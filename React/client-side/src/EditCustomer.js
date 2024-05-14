@@ -2,69 +2,69 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 
-function EditUser() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+function EditCustomer() {
+    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
 
 
-    const {id} = useParams();
+    const { id } = useParams();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/${id}` )
-           .then(response => {
-                setUsername(response.data.username);
-                setPassword(response.data.password);
+        axios.get(`http://localhost:8080/customer/${id}`)
+            .then(response => {
+                setTitle(response.data.title);
+                setName(response.data.name);
                 setEmail(response.data.email);
                 setPhone(response.data.phone);
                 setAddress(response.data.address);
             })
-           .catch(error => {
+            .catch(error => {
                 console.log(error);
             });
-    },[id]);
+    }, [id]);
 
-    function clearUser(){
-        setUsername("");
-        setPassword("");
+    function clearCustomer() {
+        setTitle("");
+        setName("");
         setEmail("");
         setPhone("");
         setAddress("");
     }
 
-    function updateUser(event) {
+    function updateCustomer(event) {
         event.preventDefault();
 
         const data = {
-            username: username,
-            password: password,
+            title: title,
+            name: name,
             email: email,
             phone: phone,
             address: address
         }
 
-        axios.put(`http://localhost:8080/user/${id}`, data)
+        axios.put(`http://localhost:8080/customer/${id}`, data)
             .then(response => {
                 if (response.request.status === 200) {
-                    alert("User Edit Successfully..!");
-                    clearUser();
+                    alert("Customer Edit Successfully..!");
+                    clearCustomer();
                 }
             })
             .catch(error => {
-                alert("User Edit Fail..!");
-                clearUser();
+                alert("Customer Edit Fail..!");
+                clearCustomer();
             });
     }
 
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
+    const handleTitle = (event) => {
+        setTitle(event.target.value);
     };
 
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
+    const handleName = (event) => {
+        setName(event.target.value);
     };
 
     const handleEmail = (event) => {
@@ -79,6 +79,7 @@ function EditUser() {
         setAddress(event.target.value);
     };
 
+
     return (
         <div>
             <section class="vh-100 gradient-custom">
@@ -87,23 +88,23 @@ function EditUser() {
                         <div class="col-12 col-lg-9 col-xl-7">
                             <div class="card shadow-lg card-registration round" >
                                 <div class="card-body p-4 p-md-5">
-                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit User Form</h3>
-                                    <form onSubmit={updateUser} id='updateUser'>
+                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Customer Form</h3>
+                                    <form onSubmit={updateCustomer} id='updateUser'>
 
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
 
                                                 <div class="form-outline">
-                                                    <label class="form-label" for="username">User Name</label>
-                                                    <input type="text" id="username" class="form-control form-control-lg" required onChange={handleUsername} value={username}/>
+                                                    <label class="form-label" for="title">Title</label>
+                                                    <input type="text" id="title" class="form-control form-control-lg" required onChange={handleTitle} value={title} />
                                                 </div>
 
                                             </div>
                                             <div class="col-md-6 mb-4">
 
                                                 <div class="form-outline">
-                                                    <label class="form-label" for="password">Password</label>
-                                                    <input type="password" id="password" class="form-control form-control-lg" required onChange={handlePassword} value={password}/>
+                                                    <label class="form-label" for="name">Name</label>
+                                                    <input type="text" id="name" class="form-control form-control-lg" required onChange={handleName} value={name} />
 
                                                 </div>
 
@@ -115,7 +116,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="username" class="form-control form-control-lg" required onChange={handleEmail} value={email}/>
+                                                    <input type="email" id="email" class="form-control form-control-lg" required onChange={handleEmail} value={email} />
 
                                                 </div>
 
@@ -124,7 +125,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone}/>
+                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone} />
 
                                                 </div>
 
@@ -135,7 +136,7 @@ function EditUser() {
                                             <div class="col-md-12 mb-4 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address}/>
+                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address} />
 
                                                 </div>
                                             </div>
@@ -144,12 +145,12 @@ function EditUser() {
                                         <div class="mt-2 pt-2 ">
                                             <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={()=>{
-                                                clearUser();
-                                        }} required >Reset</button>
+                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
+                                                clearCustomer();
+                                            }} required >Reset</button>
                                             <br />
                                             <br />
-                                            <Link to='/users' class='back'>back</Link>
+                                            <Link to='/customers' class='back'>back</Link>
                                         </div>
 
                                     </form>
@@ -163,4 +164,4 @@ function EditUser() {
     )
 }
 
-export default EditUser
+export default EditCustomer

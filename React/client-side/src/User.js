@@ -30,7 +30,7 @@ const User = () => {
                 <div class="container h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-12 col-xl-12">
-                            <div class="card shadow card-registration rounded-15" >
+                            <div class="card shadow-lg card-registration rounded-15" >
                                 <div class="card-body p-4 p-md-5">
 
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE USERS</h3>
@@ -41,7 +41,7 @@ const User = () => {
                                         }}>Create User</button>
                                     </div>
                                     <br />
-                                    <table class="table table-striped table-dark">
+                                    <table class="table table-striped">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>#</th>

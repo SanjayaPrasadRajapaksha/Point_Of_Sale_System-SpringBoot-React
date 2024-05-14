@@ -9,7 +9,7 @@ function Home() {
 
   const [products, setProducts] = useState('');
   const [orders, setOrders] = useState('');
-  const [users, setUsers] = useState('');
+  const [cusromer, setCusromer] = useState('');
   const [categories, setCategories] = useState('');
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function Home() {
         console.log(err);
       })
 
-    axios.get('http://localhost:8080/users')
+    axios.get('http://localhost:8080/customers')
       .then(function (response) {
-        setUsers(response.data.length);
+        setCusromer(response.data.length);
       })
       .catch(function (err) {
         console.log(err);
@@ -101,7 +101,7 @@ function Home() {
       </div>
 
       <div className='main-cards'>
-        <div className='card'>
+        <div className='card '>
           <div className='card-inner'>
             <h3>PRODUCTS</h3>
             <BsFillArchiveFill className='card_icon' />
@@ -124,10 +124,10 @@ function Home() {
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>USERS</h3>
+            <h3>Customers</h3>
             <BsPeopleFill className='card_icon' />
           </div>
-          <h1>{users}</h1>
+          <h1>{cusromer}</h1>
         </div>
       </div>
 

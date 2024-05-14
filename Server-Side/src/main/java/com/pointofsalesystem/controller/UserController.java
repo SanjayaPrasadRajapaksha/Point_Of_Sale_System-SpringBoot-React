@@ -43,12 +43,9 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
-        User savedUser = userService.createUser(user);
+        User saveUser = userService.createUser(user);
 
-        if (savedUser == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.status(201).body(savedUser);
+        return ResponseEntity.status(201).body(saveUser);
 
     }
 

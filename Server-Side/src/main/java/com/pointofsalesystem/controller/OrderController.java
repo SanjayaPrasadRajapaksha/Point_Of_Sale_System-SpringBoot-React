@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pointofsalesystem.dto.OrderedProductDto;
+
+import com.pointofsalesystem.entity.Customer;
 import com.pointofsalesystem.entity.Order;
+import com.pointofsalesystem.service.CustomerService;
 import com.pointofsalesystem.service.OrderService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
+    @Autowired 
+    private CustomerService customerService;
 
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
@@ -41,13 +47,21 @@ public class OrderController {
 
     }
 
-    @PostMapping("/order")
-    public ResponseEntity<Order> createOrder() {
+    @PostMapping("/orders/{id}")
+    public ResponseEntity<Order> createOrder(@PathVariable long id)  {
+
+        Customer customer = customerService.getCustomerById(id);
+
+        if(customer == null) {
+            return ResponseEntity.status(404).build();
+        }
+
         Order order = new Order();
 
         order.setTotalPrice(0);
         order.setOrderDate(LocalDateTime.now());
         order.setOrderedProducts(null);
+        order.setCustomer(customer);
 
         Order createOrder = orderService.createOrder(order);
 

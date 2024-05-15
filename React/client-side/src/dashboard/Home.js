@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsBoxFill }
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillGiftFill  }
   from 'react-icons/bs'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
   from 'recharts';
@@ -118,13 +118,13 @@ function Home() {
         <div className='card'>
           <div className='card-inner'>
             <h3>ORDERS</h3>
-            <BsBoxFill className='card_icon' />
+            <BsFillGiftFill  className='card_icon' />
           </div>
           <h1>{orders}</h1>
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>Customers</h3>
+            <h3>CUSTOMERS</h3>
             <BsPeopleFill className='card_icon' />
           </div>
           <h1>{cusromer}</h1>

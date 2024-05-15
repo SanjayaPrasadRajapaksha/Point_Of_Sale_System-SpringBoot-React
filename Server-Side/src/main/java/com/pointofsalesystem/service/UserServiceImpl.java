@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
             existingUser.setEmail(user.getEmail());
             existingUser.setPhone(user.getPhone());
             existingUser.setAddress(user.getAddress());
+            existingUser.setImageUrl(user.getImageUrl());
             return userRepository.save(existingUser);
         }
         return null;

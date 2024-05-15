@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 
@@ -44,7 +44,7 @@ const User = () => {
                                     <table class="table table-striped">
                                         <thead>
                                             <tr className='text-center'>
-                                                <th>#</th>
+                                                <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Contact</th>
@@ -58,7 +58,8 @@ const User = () => {
                                                 users && users.map(user => {
                                                     return (
                                                         <tr className='text-center'>
-                                                            <td>{user.id}</td>
+                                                            <td>{<img src={user.imageUrl} alt="Uploaded" style={{height: "50px", width:"50px", borderRadius: "100%" }} />}</td>
+                                        
                                                             <td>{user.username}</td>
                                                             <td>{user.email}</td>
                                                             <td>{user.phone}</td>

@@ -2,32 +2,37 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 function EditUser() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [imageUrl, setImageUrl] = useState(null);
 
+    const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
 
-    const {id} = useParams();
+    const { id } = useParams();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/${id}` )
-           .then(response => {
+        axios.get(`http://localhost:8080/user/${id}`)
+            .then(response => {
                 setUsername(response.data.username);
                 setPassword(response.data.password);
                 setEmail(response.data.email);
                 setPhone(response.data.phone);
                 setAddress(response.data.address);
+                setImageUrl(response.data.imageUrl);
             })
-           .catch(error => {
+            .catch(error => {
                 console.log(error);
             });
-    },[id]);
+    }, [id]);
 
-    function clearUser(){
+    function clearUser() {
         setUsername("");
         setPassword("");
         setEmail("");
@@ -43,7 +48,8 @@ function EditUser() {
             password: password,
             email: email,
             phone: phone,
-            address: address
+            address: address,
+            imageUrl: (uploadedImageUrl == null) ? imageUrl : uploadedImageUrl
         }
 
         axios.put(`http://localhost:8080/user/${id}`, data)
@@ -79,6 +85,37 @@ function EditUser() {
         setAddress(event.target.value);
     };
 
+    const formik = useFormik({
+        initialValues: {
+            image: null
+        },
+        validationSchema: Yup.object({
+            image: Yup.mixed().required("Required.!")
+                .test("FILE_SIZE", "Too big.!", (value) => value && value.size < 1024 * 1024)
+                .test("FILE_TYPE", "Invalid file type.!", (value) => value && ['image/png', 'image/jpeg'].includes(value.type))
+        }),
+
+        onSubmit: async () => {
+            const { image } = formik.values;
+            const formData = new FormData();
+
+            try {
+                formData.append("file", image);
+                formData.append("upload_preset", "xl8lkm3i");
+                const res = await axios.post("https://api.cloudinary.com/v1_1/dh2vjivem/image/upload", formData);
+
+                if (res.data && res.data.secure_url) {
+                    setUploadedImageUrl(res.data.secure_url);
+                    console.log("Uploaded image URL:", res.data.secure_url);
+
+                } else {
+                    console.error("Unable to retrieve secure URL from Cloudinary response.");
+                }
+            } catch (error) {
+                console.error("Error uploading image to Cloudinary:", error);
+            }
+        }
+    });
     return (
         <div>
             <section class="vh-100 gradient-custom">
@@ -86,24 +123,42 @@ function EditUser() {
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-9 col-xl-7">
                             <div class="card shadow-lg card-registration round" >
-                                <div class="card-body p-4 p-md-5">
-                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit User Form</h3>
+                                <div class="card-body">
+                                    <div className='text-right d-flex justify-content-between'>
+                                        <h3 class="mb-5 pb-md-0 mb-md-5">Edit User Form</h3>
+                                       {
+                                        !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
+                                       }
+                                       {
+                                        uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
+                                       }
+                                    </div>
+                                    <form onSubmit={formik.handleSubmit}>
+                                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
+
+                                        {formik.errors.image && (
+                                            <p style={{ color: 'red' }}>{formik.errors.image}</p>
+                                        )}
+
+                                        <button type='Submit' className='btn btn-success'>Upload</button>
+                                    </form>
+                                    <br/>
                                     <form onSubmit={updateUser} id='updateUser'>
 
                                         <div class="row">
-                                            <div class="col-md-6 mb-4">
+                                            <div class="col-md-6 mb-3">
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="username">User Name</label>
-                                                    <input type="text" id="username" class="form-control form-control-lg" required onChange={handleUsername} value={username}/>
+                                                    <input type="text" id="username" class="form-control form-control-lg" required onChange={handleUsername} value={username} />
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-6 mb-4">
+                                            <div class="col-md-6 mb-3">
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="password">Password</label>
-                                                    <input type="password" id="password" class="form-control form-control-lg" required onChange={handlePassword} value={password}/>
+                                                    <input type="password" id="password" class="form-control form-control-lg" required onChange={handlePassword} value={password} />
 
                                                 </div>
 
@@ -111,20 +166,20 @@ function EditUser() {
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 mb-4">
+                                            <div class="col-md-6 mb-3">
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="username" class="form-control form-control-lg" required onChange={handleEmail} value={email}/>
+                                                    <input type="email" id="username" class="form-control form-control-lg" required onChange={handleEmail} value={email} />
 
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-6 mb-4">
+                                            <div class="col-md-6 mb-3">
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone}/>
+                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone} />
 
                                                 </div>
 
@@ -132,10 +187,10 @@ function EditUser() {
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-12 mb-4 pb-2">
+                                            <div class="col-md-12 mb-3 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address}/>
+                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address} />
 
                                                 </div>
                                             </div>
@@ -144,9 +199,9 @@ function EditUser() {
                                         <div class="mt-2 pt-2 ">
                                             <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={()=>{
+                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
                                                 clearUser();
-                                        }} required >Reset</button>
+                                            }} required >Reset</button>
                                             <br />
                                             <br />
                                             <Link to='/users' class='back'>back</Link>

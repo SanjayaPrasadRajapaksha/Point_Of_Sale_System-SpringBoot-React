@@ -40,7 +40,9 @@ public class ProductServiceImpl implements ProductService {
     exsistingProduct.setPrice(product.getPrice());
     exsistingProduct.setQuantity(product.getQuantity());
     exsistingProduct.setCategory(product.getCategory());
+    exsistingProduct.setImageUrl(product.getImageUrl());
     return productRepository.save(exsistingProduct);
+
   }
 
   @Override

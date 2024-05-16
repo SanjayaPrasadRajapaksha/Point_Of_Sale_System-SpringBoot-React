@@ -54,6 +54,7 @@ public class ProductController {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setQuantity(productDto.getQuantity());
+        product.setImageUrl(productDto.getImageUrl());
         product.setCategory(category);
         Product createProduct = productService.createProduct(product);
 
@@ -70,6 +71,7 @@ public class ProductController {
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setQuantity(productDto.getQuantity());
+        product.setImageUrl(productDto.getImageUrl());
         product.setCategory(category);
         return productService.updateProduct(product,id);
 

@@ -59,7 +59,6 @@ const User = () => {
                                                     return (
                                                         <tr className='text-center'>
                                                             <td>{<img src={user.imageUrl} alt="Uploaded" style={{height: "50px", width:"50px", borderRadius: "100%" }} />}</td>
-                                        
                                                             <td>{user.username}</td>
                                                             <td>{user.email}</td>
                                                             <td>{user.phone}</td>

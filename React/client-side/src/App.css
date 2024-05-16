@@ -74,14 +74,13 @@
 }
 
 .back-icon {
-  color: black;
+  color: #2f4f4f;
 }
 
 .navbar {
-  background-color: rgba(255, 0, 0, 0.1);
-  ;
+  background-color:#db7093;
   color: #9e9ea4;
-  box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0 6px 7px -3px	#db7093 !important;
 
 }
 
@@ -111,6 +110,7 @@
   justify-content: space-between;
   padding: 0 30px 0 30px !important;
   box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+  
 }
 
 .menu-icon {
@@ -123,11 +123,11 @@
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  background-color: #ffe4e1;
+  background-color:	#db7093;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
-  box-shadow: 0px 0px 15px 0px #dbc9c7;
+  box-shadow: 0px 0px 15px 0px 	#db7093;
 }
 
 .sidebar-title {

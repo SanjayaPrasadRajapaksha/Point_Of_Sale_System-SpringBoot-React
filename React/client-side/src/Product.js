@@ -40,7 +40,7 @@ const Product = () => {
                                     <table class="table table-striped">
                                         <thead>
                                             <tr className='text-center'>
-                                                <th>#</th>
+                                                <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
@@ -53,7 +53,7 @@ const Product = () => {
                                                 products && products.map(product => {
                                                     return (
                                                         <tr className='text-center'>
-                                                            <td>{product.id}</td>
+                                                             <td>{<img src={product.imageUrl} alt="Uploaded" style={{height: "50px", width:"50px", borderRadius: "100%" }} />}</td>
                                                             <td>{product.name}</td>
                                                             <td>{product.price}</td>
                                                             <td>{product.quantity}</td>

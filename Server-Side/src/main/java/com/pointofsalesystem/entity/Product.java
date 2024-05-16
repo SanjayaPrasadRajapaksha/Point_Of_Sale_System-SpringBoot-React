@@ -34,6 +34,8 @@ public class Product {
     @Column(nullable = false)
     private double quantity;
 
+    private String imageUrl;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "orderedProducts", cascade = CascadeType.ALL)
     private List<Order> orders;

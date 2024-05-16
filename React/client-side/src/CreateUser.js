@@ -103,8 +103,8 @@ function CreateUser() {
                             <div class="card shadow-lg card-registration round" >
                                 <div class="card-body">
                                     <div className='text-right d-flex justify-content-between '>
-                                        <h3 class="mb-4  pb-md-0 mb-md-4">Create User Form</h3>
-
+                                        <h3 class="mb-3  pb-md-0 mb-md-4">Create User Form</h3>
+                                        &nbsp;&nbsp;
                                         {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "90px", width:"90px", borderRadius: "100%" }} />}
                                     </div>
                                    

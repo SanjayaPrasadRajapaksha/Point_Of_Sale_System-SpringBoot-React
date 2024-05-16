@@ -9,5 +9,6 @@ public class ProductDto {
     private String name;
     private double price;
     private double quantity;
+    private String imageUrl;
     private long category_id; 
 }

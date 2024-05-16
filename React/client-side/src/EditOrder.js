@@ -68,13 +68,9 @@ function EditOrder() {
                             <div class="card shadow-lg card-registration round" >
                                 <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Product to Order #{id}</h3>
-
-                                    {
-                                        order &&
+                                    {order &&
                                         <div>
-
                                             <div className='d-flex align-item-center justify-content-between'>
-
                                                 <div>
                                                     <h5>Date & Time : {order.orderDate}</h5>
                                                 </div>
@@ -168,7 +164,8 @@ function EditOrder() {
                                                                                             name: product.name,
                                                                                             price: product.price,
                                                                                             quantity: product.quantity - quantity,
-                                                                                            category_id: product.category?.category_id
+                                                                                            category_id: product.category?.category_id,
+                                                                                            imageUrl: product.imageUrl
                                                                                         }
 
                                                                                         axios.put('http://localhost:8080/product/' + product.id, productData)

@@ -64,7 +64,7 @@ function CreateUser() {
 
     const formik = useFormik({
         initialValues: {
-            image: null // Initialize with null
+            image: null
         },
         validationSchema: Yup.object({
             image: Yup.mixed().required("Required.!")
@@ -109,7 +109,7 @@ function CreateUser() {
                                     </div>
                                    
                                     <form onSubmit={formik.handleSubmit}>
-                                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
+                                        <input  type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
 
                                         {formik.errors.image && (
                                             <p style={{ color: 'red' }}>{formik.errors.image}</p>
@@ -124,7 +124,7 @@ function CreateUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="username">Username</label>
-                                                    <input type="text" id="username" class="form-control form-control-lg" required onChange={handleUsername} />
+                                                    <input  type="text" id="username" class="form-control border-primary form-control-lg" required onChange={handleUsername} />
                                                 </div>
 
                                             </div>
@@ -132,7 +132,7 @@ function CreateUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="password">Password</label>
-                                                    <input type="password" id="password" class="form-control form-control-lg" required onChange={handlePassword} />
+                                                    <input type="password" id="password" class="form-control border-primary form-control-lg" required onChange={handlePassword} />
 
                                                 </div>
 
@@ -144,7 +144,7 @@ function CreateUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="email" class="form-control form-control-lg" required onChange={handleEmail} />
+                                                    <input type="email" id="email" class="form-control border-primary form-control-lg" required onChange={handleEmail} />
 
                                                 </div>
 
@@ -153,7 +153,7 @@ function CreateUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} />
+                                                    <input type="text" id="phone" class="form-control border-primary form-control-lg" required onChange={handlePhone} />
 
                                                 </div>
 
@@ -164,7 +164,7 @@ function CreateUser() {
                                             <div class="col-md-12 mb-3 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} />
+                                                    <input type="text" id="address" class="form-control border-primary form-control-lg" required onChange={handleAddress} />
 
                                                 </div>
                                             </div>

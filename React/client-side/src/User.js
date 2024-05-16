@@ -41,7 +41,7 @@ const User = () => {
                                         }}>Create User</button>
                                     </div>
                                     <br />
-                                    <table class="table table-striped">
+                                    <table class="table table-warning">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>Image</th>

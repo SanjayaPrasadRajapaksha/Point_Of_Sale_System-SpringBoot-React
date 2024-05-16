@@ -62,7 +62,7 @@ function EditCategory() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="category_name">Category Name</label>
-                                                    <input type="text" id="category_name" class="form-control form-control-lg" required onChange={handleCategory} value={category_name} />
+                                                    <input type="text" id="category_name" class="form-control form-control-lg border-primary" required onChange={handleCategory} value={category_name} />
                                                 </div>
 
                                             </div>

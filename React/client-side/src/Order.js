@@ -24,11 +24,7 @@ function Order() {
                 console.log(error)
             }, [])
     })
-
-    // const handleCustomer = (event) => {
-    //     setCustomer_id(event.target.value);
-    // }
-
+ 
 function handleCustomer_id (event) {
     setCustomer_id(event.target.value);
 }
@@ -46,7 +42,7 @@ function handleCustomer_id (event) {
                                     <br />
                                     <div className="text-right d-flex justify-content-between ">
                                         <div>
-                                            <input type='text' placeholder='Customer ID' onChange={handleCustomer_id} />
+                                            <input id='fieldClear' type='text' placeholder='Customer ID' onChange={handleCustomer_id} />
                                             &nbsp;
                                             <button type='button' className='btn btn-secondary' onClick={() => {
 
@@ -56,6 +52,7 @@ function handleCustomer_id (event) {
                                                     })
                                                     .catch(function (error) {
                                                         alert("Invalid Customer ID: " + customer_id)
+                                                       
                                                     });
                                             }}
                                             >Search</button>
@@ -82,7 +79,7 @@ function handleCustomer_id (event) {
 
                                     </div>
                                     <br />
-                                    <table className="table table-striped ">
+                                    <table className="table table-warning">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>#</th>

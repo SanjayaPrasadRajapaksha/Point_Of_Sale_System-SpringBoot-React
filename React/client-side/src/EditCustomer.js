@@ -90,58 +90,42 @@ function EditCustomer() {
                                 <div class="card-body p-4 p-md-5">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Customer Form</h3>
                                     <form onSubmit={updateCustomer} id='updateUser'>
-
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
-
                                                 <div class="form-outline">
                                                     <label class="form-label" for="title">Title</label>
-                                                    <input type="text" id="title" class="form-control form-control-lg" required onChange={handleTitle} value={title} />
+                                                    <input type="text" id="title" class="form-control form-control-lg border-primary" required onChange={handleTitle} value={title} />
                                                 </div>
-
                                             </div>
                                             <div class="col-md-6 mb-4">
-
                                                 <div class="form-outline">
                                                     <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg" required onChange={handleName} value={name} />
-
+                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
-
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="email" class="form-control form-control-lg" required onChange={handleEmail} value={email} />
-
+                                                    <input type="email" id="email" class="form-control form-control-lg border-primary" required onChange={handleEmail} value={email} />
                                                 </div>
-
                                             </div>
                                             <div class="col-md-6 mb-4">
-
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone} />
-
+                                                    <input type="text" id="phone" class="form-control form-control-lg border-primary" required onChange={handlePhone} value={phone} />
                                                 </div>
-
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-12 mb-4 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address} />
-
+                                                    <input type="text" id="address" class="form-control form-control-lg border-primary" required onChange={handleAddress} value={address} />
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="mt-2 pt-2 ">
                                             <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -152,7 +136,6 @@ function EditCustomer() {
                                             <br />
                                             <Link to='/customers' class='back'>back</Link>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>

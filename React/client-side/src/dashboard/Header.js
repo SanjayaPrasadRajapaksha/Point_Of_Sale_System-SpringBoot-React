@@ -4,7 +4,7 @@ import { BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify
 function Header({ OpenSidebar }) {
     return (
 
-        <header className='header'>
+        <header className='header shadow-lg'>
             <div className='menu-icon'>
                 <BsJustify className='icon' onClick={OpenSidebar} />
             </div>

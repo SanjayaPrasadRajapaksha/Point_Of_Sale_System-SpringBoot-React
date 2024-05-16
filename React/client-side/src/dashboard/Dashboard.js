@@ -12,6 +12,7 @@ function Dashboard() {
 
     return (
         <div className='grid-container'>
+            <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
             <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
             <Home />
         </div>

@@ -150,7 +150,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="username">User Name</label>
-                                                    <input type="text" id="username" class="form-control form-control-lg" required onChange={handleUsername} value={username} />
+                                                    <input type="text" id="username" class="form-control form-control-lg border-primary" required onChange={handleUsername} value={username} />
                                                 </div>
 
                                             </div>
@@ -158,7 +158,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="password">Password</label>
-                                                    <input type="password" id="password" class="form-control form-control-lg" required onChange={handlePassword} value={password} />
+                                                    <input type="password" id="password" class="form-control form-control-lg border-primary" required onChange={handlePassword} value={password} />
 
                                                 </div>
 
@@ -170,7 +170,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="username" class="form-control form-control-lg" required onChange={handleEmail} value={email} />
+                                                    <input type="email" id="username" class="form-control form-control-lg border-primary" required onChange={handleEmail} value={email} />
 
                                                 </div>
 
@@ -179,7 +179,7 @@ function EditUser() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} value={phone} />
+                                                    <input type="text" id="phone" class="form-control form-control-lg border-primary" required onChange={handlePhone} value={phone} />
 
                                                 </div>
 
@@ -190,7 +190,7 @@ function EditUser() {
                                             <div class="col-md-12 mb-3 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} value={address} />
+                                                    <input type="text" id="address" class="form-control form-control-lg border-primary" required onChange={handleAddress} value={address} />
 
                                                 </div>
                                             </div>

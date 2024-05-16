@@ -65,7 +65,7 @@ function CreateProduct() {
 
     const formik = useFormik({
         initialValues: {
-            image: null // Initialize with null
+            image: null 
         },
         validationSchema: Yup.object({
             image: Yup.mixed().required("Required.!")
@@ -126,7 +126,7 @@ function CreateProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg" required onChange={handleName} />
+                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} />
                                                 </div>
 
                                             </div>
@@ -134,7 +134,7 @@ function CreateProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="price">Price</label>
-                                                    <input type="text" id="price" class="form-control form-control-lg" required onChange={handlePrice} />
+                                                    <input type="text" id="price" class="form-control form-control-lg border-primary" required onChange={handlePrice} />
 
                                                 </div>
 
@@ -146,14 +146,14 @@ function CreateProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="quantity">Quantity</label>
-                                                    <input type="text" id="quantity" class="form-control form-control-lg" required onChange={handleQuantity} />
+                                                    <input type="text" id="quantity" class="form-control form-control-lg border-primary" required onChange={handleQuantity} />
 
                                                 </div>
 
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label select-label">Choose option</label>
-                                                <select class="select form-control-lg" onChange={handleCategory} required>
+                                                <select class="select form-control-lg border-primary" onChange={handleCategory} required>
                                                     <option value="1" disabled selected>Choose your option</option>
 
                                                     {

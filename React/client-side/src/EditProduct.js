@@ -155,7 +155,7 @@ function EditProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg" required onChange={handleName} value={name} />
+                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
                                                 </div>
 
                                             </div>
@@ -163,7 +163,7 @@ function EditProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="price">Price</label>
-                                                    <input type="text" id="price" class="form-control form-control-lg" required onChange={handlePrice} value={price} />
+                                                    <input type="text" id="price" class="form-control form-control-lg border-primary" required onChange={handlePrice} value={price} />
 
                                                 </div>
 
@@ -175,14 +175,14 @@ function EditProduct() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="quantity">Quantity</label>
-                                                    <input type="text" id="quantity" class="form-control form-control-lg" required onChange={handleQuantity} value={quantity} />
+                                                    <input type="text" id="quantity" class="form-control form-control-lg border-primary" required onChange={handleQuantity} value={quantity} />
 
                                                 </div>
 
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label select-label">Category</label>
-                                                <select class="select form-control-lg" onChange={handleCategory} required>
+                                                <select class="select form-control-lg border-primary" onChange={handleCategory} required>
                                                 <option value="1" disabled>Choose your option</option>
 
                                                     {category && category.map(category => {

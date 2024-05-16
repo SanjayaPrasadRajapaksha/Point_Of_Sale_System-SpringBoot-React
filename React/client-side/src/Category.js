@@ -37,7 +37,7 @@ function Category() {
                                         }}>Create Category</button>
                                     </div>
                                     <br />
-                                    <table class="table table-striped">
+                                    <table class="table table-warning">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>#</th>

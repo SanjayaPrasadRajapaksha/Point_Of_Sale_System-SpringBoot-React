@@ -69,7 +69,7 @@ function CreateCustomer() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="title">Title</label>
-                                                    <input type="text" id="title" class="form-control form-control-lg" required onChange={handleTitle} />
+                                                    <input type="text" id="title" class="form-control form-control-lg border-primary" required onChange={handleTitle} />
                                                 </div>
 
                                             </div>
@@ -77,7 +77,7 @@ function CreateCustomer() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg" required onChange={handleName} />
+                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} />
 
                                                 </div>
 
@@ -89,7 +89,7 @@ function CreateCustomer() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="email" class="form-control form-control-lg" required onChange={handleEmail} />
+                                                    <input type="email" id="email" class="form-control form-control-lg border-primary" required onChange={handleEmail} />
 
                                                 </div>
 
@@ -98,7 +98,7 @@ function CreateCustomer() {
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg" required onChange={handlePhone} />
+                                                    <input type="text" id="phone" class="form-control form-control-lg border-primary" required onChange={handlePhone} />
 
                                                 </div>
 
@@ -109,7 +109,7 @@ function CreateCustomer() {
                                             <div class="col-md-12 mb-4 pb-2">
                                                 <div class="form-outline">
                                                     <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg" required onChange={handleAddress} />
+                                                    <input type="text" id="address" class="form-control form-control-lg border-primary" required onChange={handleAddress} />
 
                                                 </div>
                                             </div>

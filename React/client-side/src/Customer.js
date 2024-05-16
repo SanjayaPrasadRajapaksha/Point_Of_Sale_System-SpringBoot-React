@@ -30,17 +30,15 @@ function Customer() {
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-12 col-xl-12">
                             <div class="card shadow-lg card-registration rounded-15" >
-                                <div class="card-body p-4 p-md-5">
-
+                                <div class="card-body p-4 p-md-5 scroll">
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE CUSTOMERS</h3>
-
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
                                             navigate('/createCustomer')
                                         }}>Create Customer</button>
                                     </div>
                                     <br />
-                                    <table class="table table-striped">
+                                    <table class="table table-warning">
                                         <thead>
                                             <tr className='text-center'>
                                                 <th>#</th>

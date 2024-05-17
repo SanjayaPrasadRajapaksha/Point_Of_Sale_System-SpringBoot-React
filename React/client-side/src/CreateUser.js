@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Navbar from './Navbar';
 
 
 
@@ -96,6 +97,7 @@ function CreateUser() {
 
     return (
         <div>
+            <Navbar/>
             <section class="vh-100 gradient-custom">
                 <div class="container h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
@@ -105,7 +107,7 @@ function CreateUser() {
                                     <div className='text-right d-flex justify-content-between '>
                                         <h3 class="mb-3  pb-md-0 mb-md-4">Create User Form</h3>
                                         &nbsp;&nbsp;
-                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "90px", width:"90px", borderRadius: "100%" }} />}
+                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width:"110px", borderRadius: "100%",marginRight:"65px" }} />}
                                     </div>
                                    
                                     <form onSubmit={formik.handleSubmit}>

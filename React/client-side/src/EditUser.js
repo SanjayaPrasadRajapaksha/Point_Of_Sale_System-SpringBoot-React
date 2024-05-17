@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Navbar from './Navbar';
 function EditUser() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -118,6 +119,7 @@ function EditUser() {
     });
     return (
         <div>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">
@@ -126,12 +128,12 @@ function EditUser() {
                                 <div class="card-body">
                                     <div className='text-right d-flex justify-content-between'>
                                         <h3 class="mb-5 pb-md-0 mb-md-5">Edit User Form</h3>
-                                       {
-                                        !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
-                                       }
-                                       {
-                                        uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
-                                       }
+                                        {
+                                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%" ,marginRight:"65px"  }} />
+                                        }
+                                        {
+                                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%" , marginRight:"65px"  }} />
+                                        }
                                     </div>
                                     <form onSubmit={formik.handleSubmit}>
                                         <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
@@ -142,7 +144,7 @@ function EditUser() {
 
                                         <button type='Submit' className='btn btn-success'>Upload</button>
                                     </form>
-                                    <br/>
+                                    <br />
                                     <form onSubmit={updateUser} id='updateUser'>
 
                                         <div class="row">

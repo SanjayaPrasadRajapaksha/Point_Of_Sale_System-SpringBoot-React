@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Navbar from './Navbar';
 function EditProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -122,6 +123,7 @@ function EditProduct() {
     });
     return (
         <div>
+            <Navbar/>
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">
@@ -132,10 +134,10 @@ function EditProduct() {
                                         <h3 class="mb-5 ">Edit Product Form</h3>
                                         <br/>
                                        {
-                                        !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
+                                        !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%",marginRight:"65px"  }} />
                                        }
                                        {
-                                        uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "90px", width: "90px", borderRadius: "100%" }} />
+                                        uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%",marginRight:"65px"  }} />
                                        }
                                     </div>
                                     <form onSubmit={formik.handleSubmit}>

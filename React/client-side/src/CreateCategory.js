@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 function CreateCategory() {
     const [category_name, setCategory_name] = useState("");
@@ -33,6 +34,7 @@ function CreateCategory() {
 
     return (
         <div>
+            <Navbar/>
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100 ">
                     <div class="row justify-content-center align-items-center h-100">

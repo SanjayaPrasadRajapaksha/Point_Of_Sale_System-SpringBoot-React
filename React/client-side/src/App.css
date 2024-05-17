@@ -42,6 +42,28 @@
 
 }
 
+a {
+  text-decoration: none !important;
+}
+
+.navIcon {
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 20px;
+  text-decoration: none !important;
+  color: #00FFFF!important;
+}
+
+.navIcon:hover {
+  color: white !important;
+  padding: 1px 1px;
+  text-decoration: none !important;
+}
+
+.back {
+  font-size: 20px;
+  text-decoration: underline !important;
+}
 /* dashboard */
 
 .grid-container {
@@ -96,6 +118,11 @@
   height: 100vh;
 }
 
+.dateTime{
+  margin-right: 5px;
+  color: white;
+  font-size: 19px;
+}
 /* Header  */
 .header {
   grid-area: header;
@@ -157,11 +184,10 @@
   cursor: pointer;
 }
 
-.sidebar-list-item>a,
-.sName,
-.nIcon {
+.slideIcon,
+.companyName {
   text-decoration: none;
-  color: #87cefa;
+  color:#00FFFF;
 }
 
 .sidebar-responsive {

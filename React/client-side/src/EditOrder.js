@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import Navbar from './Navbar';
 
 function EditOrder() {
 
@@ -61,12 +62,13 @@ function EditOrder() {
 
     return (
         <div>
+            <Navbar/>
             <section class="vh-100 gradient-custom scroll">
                 <div class="container py-2 h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-mb-12">
                             <div class="card shadow-lg card-registration round" >
-                                <div class="card-body p-4 p-md-5">
+                                <div class="card-body">
                                     <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Product to Order #{id}</h3>
                                     {order &&
                                         <div>
@@ -75,7 +77,7 @@ function EditOrder() {
                                                     <h5>Date & Time : {order.orderDate}</h5>
                                                 </div>
                                                 <div>
-                                                    <h5>Customar Name : {order.customer.name}</h5>
+                                                    <h5>Customer Name : {order.customer.name}</h5>
                                                 </div>
                                                 <div>
                                                     <h5>Total Price : Rs. {order.totalPrice}</h5>

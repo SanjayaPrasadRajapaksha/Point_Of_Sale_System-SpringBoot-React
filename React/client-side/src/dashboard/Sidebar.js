@@ -10,7 +10,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
             <div className='sidebar-title'>
-                <div className='sidebar-brand sName'>
+                <div className='sidebar-brand companyName'>
                     POS System
                 </div>
                 <span className='icon close_icon' onClick={OpenSidebar}>X</span>
@@ -18,50 +18,50 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item'>
-                    <Link to='/'>
+                    <Link to='/' className='slideIcon'>
                         <BsGrid1X2Fill className='icon' /> Dashboard
                     </Link>
 
                 </li>
 
                 <li className='sidebar-list-item'>
-                    <Link to='/orders'>
+                    <Link to='/orders' className='slideIcon'>
                         <BsFillGiftFill  className='icon' /> Orders
                     </Link>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to='/products'>
+                    <Link to='/products' className='slideIcon'>
                         <BsFillArchiveFill className='icon' /> Products
                     </Link>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to='/categories'>
+                    <Link to='/categories' className='slideIcon'>
                         <BsFillGrid3X3GapFill className='icon' /> Categories
                     </Link>
 
                 </li>
 
                 <li className='sidebar-list-item'>
-                    <Link to='/customers'>
+                    <Link to='/customers' className='slideIcon'>
                         <BsPeopleFill className='icon' /> Customers
                     </Link>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to='/users'>
+                    <Link to='/users' className='slideIcon'>
                         <BsPersonCircle className='icon' /> Users
                     </Link>
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to=''>
+                    <Link to='' className='slideIcon'>
                         <BsBoxArrowRight className='icon' /> Login
                     </Link>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to=''>
+                    <Link to='' className='slideIcon'>
                         <BsBoxArrowLeft className='icon' /> Logout
                     </Link>
 

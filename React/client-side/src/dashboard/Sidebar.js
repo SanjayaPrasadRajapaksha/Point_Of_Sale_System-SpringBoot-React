@@ -55,7 +55,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </Link>
                 </li>
                 <li className='sidebar-list-item'>
-                    <Link to='' className='slideIcon'>
+                    <Link to='/login' className='slideIcon'>
                         <BsBoxArrowRight className='icon' /> Login
                     </Link>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsArrowLeftCircleFill, BsGrid1X2Fill }
+import { BsPersonCircle }
     from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 function Navbar() {

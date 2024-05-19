@@ -16,6 +16,7 @@ import Dashboard from './dashboard/Dashboard';
 import Customer from './Customer';
 import CreateCustomer from './CreateCustomer';
 import EditCustomer from './EditCustomer';
+import Login from './Login';
 
 
 
@@ -43,6 +44,10 @@ function App() {
           <Route path='/customers' element={<Customer />} />
           <Route path='/createCustomer' element={<CreateCustomer />} />
           <Route path='/customers/:id/editCustomer' element={<EditCustomer />} />
+
+          <Route path='/login' element={<Login/>} />
+
+
 
           <Route path='/' element={<Dashboard/>} />
         </Routes>

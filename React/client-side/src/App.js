@@ -17,44 +17,48 @@ import Customer from './Customer';
 import CreateCustomer from './CreateCustomer';
 import EditCustomer from './EditCustomer';
 import Login from './Login';
+import { AuthProvider } from './utils/AuthContext';
+import ProtectedRoutes from './utils/ProtectedRoutes.js';
 
 
 
 function App() {
   return (
-<div>
-<BrowserRouter>
+
+    <AuthProvider>
+      <BrowserRouter>
         <Routes>
-        
-          <Route path='/users' element={<User />} />
-          <Route path='/createUser' element={<CreateUser />} />
-          <Route path='/users/:id/editUser' element={<EditUser />} />
+          <Route element={<ProtectedRoutes />}>
 
-          <Route path='/products' element={<Product />} />
-          <Route path='/createProduct' element={<CreateProduct />} />
-          <Route path='/products/:id/editProduct' element={<EditProduct />} />
+            <Route path='/users' element={<User />} />
+            <Route path='/users/createUser' element={<CreateUser />} />
+            <Route path='/users/:id/editUser' element={<EditUser />} />
 
-          <Route path='/categories' element={<Category />} />
-          <Route path='/createCategory' element={<CreateCategory />} />
-          <Route path='/categories/:id/editCategory' element={<EditCategory />} />
+            <Route path='/products' element={<Product />} />
+            <Route path='/products/createProduct' element={<CreateProduct />} />
+            <Route path='/products/:id/editProduct' element={<EditProduct />} />
 
-          <Route path='/orders' element={<Order />} />
-          <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
+            <Route path='/categories' element={<Category />} />
+            <Route path='/categories/createCategory' element={<CreateCategory />} />
+            <Route path='/categories/:id/editCategory' element={<EditCategory />} />
 
-          <Route path='/customers' element={<Customer />} />
-          <Route path='/createCustomer' element={<CreateCustomer />} />
-          <Route path='/customers/:id/editCustomer' element={<EditCustomer />} />
+            <Route path='/orders' element={<Order />} />
+            <Route path='/Orders/:id/editOrder' element={<EditOrder />} />
 
-          <Route path='/login' element={<Login/>} />
+            <Route path='/customers' element={<Customer />} />
+            <Route path='/customers/createCustomer' element={<CreateCustomer />} />
+            <Route path='/customers/:id/editCustomer' element={<EditCustomer />} />
+          </Route>
+
+
+          <Route path='/login' element={<Login />} />
 
 
 
-          <Route path='/' element={<Dashboard/>} />
+          <Route path='/' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
-</div>
-     
-
+    </AuthProvider>
   )
 }
 

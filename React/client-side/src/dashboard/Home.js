@@ -1,11 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillGiftFill  }
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillGiftFill }
   from 'react-icons/bs'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
   from 'recharts';
+import { useAuth } from '../utils/AuthContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Home() {
+
+  const navigate = useNavigate();
+  const { isAuthenticated, jwtToken } = useAuth();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`
+    }
+  }
 
   const [products, setProducts] = useState('');
   const [orders, setOrders] = useState('');
@@ -13,38 +24,41 @@ function Home() {
   const [categories, setCategories] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8080/products')
-      .then(function (response) {
-        setProducts(response.data.length);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+    if (isAuthenticated) {
+      axios.get('http://localhost:8080/products', config)
+        .then(function (response) {
+          setProducts(response.data.length);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
 
-    axios.get('http://localhost:8080/orders')
-      .then(function (response) {
-        setOrders(response.data.length);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+      axios.get('http://localhost:8080/orders', config)
+        .then(function (response) {
+          setOrders(response.data.length);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
 
-    axios.get('http://localhost:8080/customers')
-      .then(function (response) {
-        setCusromer(response.data.length);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+      axios.get('http://localhost:8080/customers', config)
+        .then(function (response) {
+          setCusromer(response.data.length);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
 
-    axios.get('http://localhost:8080/categories')
-      .then(function (response) {
-        setCategories(response.data.length);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
-  })
+      axios.get('http://localhost:8080/categories', config)
+        .then(function (response) {
+          setCategories(response.data.length);
+        })
+        .catch(function (err) {
+          console.log(err);
+        })
+    }
+
+  }, [isAuthenticated])
 
 
 
@@ -118,7 +132,7 @@ function Home() {
         <div className='card'>
           <div className='card-inner'>
             <h3>ORDERS</h3>
-            <BsFillGiftFill  className='card_icon' />
+            <BsFillGiftFill className='card_icon' />
           </div>
           <h1>{orders}</h1>
         </div>

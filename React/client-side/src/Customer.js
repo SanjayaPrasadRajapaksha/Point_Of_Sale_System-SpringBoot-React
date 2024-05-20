@@ -1,16 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function Customer() {
 
     const [customers, setCustomers] = useState('');
     const navigate = useNavigate()
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/customers')
+        axios.get('http://localhost:8080/customers', config)
 
             .then(function (response) {
                 setCustomers(response.data)
@@ -19,8 +27,8 @@ function Customer() {
             })
             .catch(function (error) {
                 console.log(error)
-            }, [])
-    })
+            })
+    }, [isAuthenticated])
 
     return (
         <div>
@@ -34,7 +42,7 @@ function Customer() {
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE CUSTOMERS</h3>
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
-                                            navigate('/createCustomer')
+                                            navigate('/customers/createCustomer')
                                         }}>Create Customer</button>
                                     </div>
                                     <br />
@@ -67,10 +75,18 @@ function Customer() {
                                                                 &nbsp;
                                                                 &nbsp;
                                                                 <button className='btn btn-danger' onClick={() => {
-                                                                    axios.delete(`http://localhost:8080/customer/${customers.id}`)
+                                                                    axios.delete(`http://localhost:8080/customer/${customers.id}`, config)
                                                                         .then(function (response) {
+                                                                            axios.get('http://localhost:8080/customers', config)
 
-                                                                            setCustomers();
+                                                                                .then(function (response) {
+                                                                                    setCustomers(response.data)
+                                                                                    console.log(response.data)
+
+                                                                                })
+                                                                                .catch(function (error) {
+                                                                                    console.log(error)
+                                                                                })
                                                                         })
                                                                         .catch(function (error) {
                                                                             console.log(error)

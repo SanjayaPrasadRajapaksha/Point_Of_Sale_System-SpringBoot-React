@@ -3,6 +3,7 @@ package com.pointofsalesystem.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pointofsalesystem.entity.User;
@@ -12,6 +13,9 @@ import com.pointofsalesystem.repository.UserRepository;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEnc;
 
     @Override
     public List<User> getAllUsers() {
@@ -25,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        user.setPassword(passwordEnc.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

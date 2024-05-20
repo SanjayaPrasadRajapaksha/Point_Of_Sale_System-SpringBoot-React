@@ -4,7 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 function EditUser() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -17,9 +18,19 @@ function EditUser() {
 
     const { id } = useParams();
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
+
+
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/${id}`)
+        axios.get(`http://localhost:8080/user/${id}`,config)
             .then(response => {
                 setUsername(response.data.username);
                 setPassword(response.data.password);
@@ -53,7 +64,7 @@ function EditUser() {
             imageUrl: (uploadedImageUrl == null) ? imageUrl : uploadedImageUrl
         }
 
-        axios.put(`http://localhost:8080/user/${id}`, data)
+        axios.put(`http://localhost:8080/user/${id}`, data,config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("User Edit Successfully..!");

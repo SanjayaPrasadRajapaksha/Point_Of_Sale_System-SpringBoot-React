@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function EditOrder() {
 
@@ -14,8 +15,16 @@ function EditOrder() {
     const navigate = useNavigate();
 
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
     useEffect(() => {
-        axios.get(`http://localhost:8080/order/${id}`)
+        axios.get(`http://localhost:8080/order/${id}`,config)
             .then(response => {
                 setOrder(response.data);
                 console.log(response.data);
@@ -24,7 +33,7 @@ function EditOrder() {
                 console.log(error);
             });
 
-        axios.get('http://localhost:8080/products')
+        axios.get('http://localhost:8080/products',config)
             .then(response => {
                 setProduct(response.data);
                 console.log(response.data);
@@ -32,7 +41,7 @@ function EditOrder() {
             .catch(error => {
                 console.log(error);
             });
-    },)
+    },[isAuthenticated])
 
     function handleQty(event) {
         setQuantity(event.target.value);
@@ -41,7 +50,7 @@ function EditOrder() {
 
     function refreshProducts() {
 
-        axios.get('http://localhost:8080/products')
+        axios.get('http://localhost:8080/products',config)
             .then(response => {
                 setProduct(response.data);
                 console.log(response.data);
@@ -50,7 +59,7 @@ function EditOrder() {
                 console.log(error);
             });
 
-        axios.get(`http://localhost:8080/order/${id}`)
+        axios.get(`http://localhost:8080/order/${id}`,config)
             .then(response => {
                 setOrder(response.data);
                 console.log(response.data);
@@ -59,7 +68,19 @@ function EditOrder() {
                 console.log(error);
             });
     }
+function placeOrder(){
 
+    axios.get(`http://localhost:8080/placeOrder/${id}`,config)
+    .then(function (response) {
+        alert("Order Place Successfullly..!")
+        navigate('/orders')
+
+    })
+    .catch(function (error) {
+        alert("Order Place Fail..!")
+        console.log(error)
+    });
+}
     return (
         <div>
             <Navbar/>
@@ -150,7 +171,7 @@ function EditOrder() {
                                                                                             product_id: product.id,
                                                                                             quantity: quantity
                                                                                         }
-                                                                                        axios.post(`http://localhost:8080/order/${id}/addProduct`, data)
+                                                                                        axios.post(`http://localhost:8080/order/${id}/addProduct`, data,config)
                                                                                             .then(function (response) {
                                                                                                 setOrder(response.data);
                                                                                                 alert("Product Add Successfully..!")
@@ -170,7 +191,7 @@ function EditOrder() {
                                                                                             imageUrl: product.imageUrl
                                                                                         }
 
-                                                                                        axios.put('http://localhost:8080/product/' + product.id, productData)
+                                                                                        axios.put('http://localhost:8080/product/' + product.id, productData,config)
                                                                                             .then(function (response) {
                                                                                                 refreshProducts();
 
@@ -197,18 +218,7 @@ function EditOrder() {
                                             <br />
                                             <div className='d-flex justify-content-between'>
                                                 <Link to='/orders' className='back'>back</Link>
-                                                <button className=' btn btn-success text-right d-flex justify-content-end' onClick={() => {
-                                                    axios.post(`http://localhost:8080/order/${id}`)
-                                                        .then(function (response) {
-                                                            alert("Order Place Successfullly..!")
-                                                            navigate('/orders')
-
-                                                        })
-                                                        .catch(function (error) {
-                                                            alert("Order Place Fail..!")
-                                                            console.log(error)
-                                                        })
-                                                }}>Place order</button>
+                                                <button className=' btn btn-success text-right d-flex justify-content-end' onClick={placeOrder}>Place order</button>
                                             </div>
 
                                         </div>

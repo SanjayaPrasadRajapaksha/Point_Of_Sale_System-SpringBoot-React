@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 function CreateProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -14,8 +15,19 @@ function CreateProduct() {
 
     const [uploadedImageUrl, setUploadedImageUrl] = useState('');
 
+    const [products, setProducts] = useState();
+    const navigate = useNavigate()
+
+    const { isAuthenticated, jwtToken } = useAuth();
+    console.log(jwtToken);
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
     useEffect(() => {
-        axios.get("http://localhost:8080/categories")
+        axios.get("http://localhost:8080/categories",config)
             .then(response => {
                 setCategories(response.data);
                 console.log(response.data);
@@ -35,7 +47,7 @@ function CreateProduct() {
             category_id: category_id
         }
 
-        axios.post("http://localhost:8080/product", data)
+        axios.post("http://localhost:8080/product", data,config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Product Create Successfully..!");
@@ -66,7 +78,7 @@ function CreateProduct() {
 
     const formik = useFormik({
         initialValues: {
-            image: null 
+            image: null
         },
         validationSchema: Yup.object({
             image: Yup.mixed().required("Required.!")
@@ -96,9 +108,10 @@ function CreateProduct() {
         }
     });
 
+   
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom ">
                 <div class="container py-2 h-100 ">
                     <div class="row justify-content-center align-items-center h-100 ">
@@ -108,7 +121,7 @@ function CreateProduct() {
                                     <div className='text-right d-flex justify-content-between '>
                                         <h3 class="mb-4  pb-md-0 mb-md-4">Create Product Form</h3>
                                         &nbsp;&nbsp;
-                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%",marginRight:"65px"  }} />}
+                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />}
                                     </div>
 
                                     <form onSubmit={formik.handleSubmit}>

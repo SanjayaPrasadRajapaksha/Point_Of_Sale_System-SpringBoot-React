@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 function EditProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -17,9 +18,19 @@ function EditProduct() {
 
     const { id } = useParams();
 
+
+
+    const { isAuthenticated, jwtToken } = useAuth();
+    console.log(jwtToken);
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/product/${id}`)
+        axios.get(`http://localhost:8080/product/${id}`,config)
             .then(response => {
                 setName(response.data.name);
                 setPrice(response.data.price);
@@ -32,7 +43,7 @@ function EditProduct() {
                 console.log(error);
             });
 
-        axios.get('http://localhost:8080/categories')
+        axios.get('http://localhost:8080/categories',config)
             .then(response => {
                 setCategory(response.data);
 
@@ -61,7 +72,7 @@ function EditProduct() {
             imageUrl: (uploadedImageUrl == null) ? imageUrl : uploadedImageUrl
         }
 
-        axios.put(`http://localhost:8080/product/${id}`, data)
+        axios.put(`http://localhost:8080/product/${id}`, data,config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("Product Edit Successfully..!");

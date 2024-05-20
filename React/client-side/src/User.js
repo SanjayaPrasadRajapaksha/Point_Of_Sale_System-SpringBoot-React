@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
+import { useAuth } from "./utils/AuthContext";
 
 
 const User = () => {
@@ -9,9 +10,17 @@ const User = () => {
     const [users, setUsers] = useState();
     const navigate = useNavigate()
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
 
     useEffect(() => {
-        axios.get('http://localhost:8080/users')
+        axios.get('http://localhost:8080/users',config)
 
             .then(function (response) {
                 setUsers(response.data)
@@ -20,7 +29,7 @@ const User = () => {
             })
             .catch(function (error) {
                 console.log(error)
-            }, [])
+            }, [isAuthenticated])
     })
 
     return (
@@ -37,7 +46,7 @@ const User = () => {
 
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
-                                            navigate('/createUser')
+                                            navigate('/users/createUser')
                                         }}>Create User</button>
                                     </div>
                                     <br />
@@ -70,7 +79,7 @@ const User = () => {
                                                                 &nbsp;
                                                                 &nbsp;
                                                                 <button className='btn btn-danger' onClick={() => {
-                                                                    axios.delete(`http://localhost:8080/user/${user.id}`)
+                                                                    axios.delete(`http://localhost:8080/user/${user.id}`,config)
                                                                         .then(function (response) {
 
                                                                             setUsers();

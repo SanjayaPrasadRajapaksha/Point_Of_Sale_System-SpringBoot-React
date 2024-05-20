@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import {  useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 
 function Order() {
@@ -11,9 +12,16 @@ function Order() {
     const [ customer_id, setCustomer_id ] = useState('');
     const navigate = useNavigate()
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/orders')
+        axios.get('http://localhost:8080/orders',config)
 
             .then(function (response) {
                 setOrders(response.data)
@@ -22,7 +30,7 @@ function Order() {
             })
             .catch(function (error) {
                 console.log(error)
-            }, [])
+            }, [isAuthenticated])
     })
  
 function handleCustomer_id (event) {
@@ -46,7 +54,7 @@ function handleCustomer_id (event) {
                                             &nbsp;
                                             <button type='button' className='btn btn-secondary' onClick={() => {
 
-                                                axios.get(`http://localhost:8080/customer/${customer_id}`)
+                                                axios.get(`http://localhost:8080/customer/${customer_id}`,config)
                                                     .then(function (response) {
                                                       setCustomer(response.data);
                                                     })
@@ -65,8 +73,13 @@ function handleCustomer_id (event) {
                                         }
                                         <div>
 
-                                            <button type="button" class="btn btn-primary" onClick={() => {
-                                                axios.post(`http://localhost:8080/orders/${customer.id}`)
+                                            <button type="button" class="btn btn-primary" onClick={(e) => {
+                                                e.preventDefault();
+
+                                                const data = {
+                                                    customer_id : customer.id
+                                                }
+                                                axios.post('http://localhost:8080/order',data,config)
                                                     .then(function (response) {
                                                         navigate(`/orders/${response.data.id}/editOrder`)
                                                     })
@@ -114,7 +127,7 @@ function handleCustomer_id (event) {
                                                                 &nbsp;
                                                                 &nbsp;
                                                                 <button className='btn btn-danger' onClick={() => {
-                                                                    axios.delete(`http://localhost:8080/order/${orders.id}`)
+                                                                    axios.delete(`http://localhost:8080/order/${orders.id}`,config)
                                                                         .then(function (response) {
 
                                                                             setOrders();

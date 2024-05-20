@@ -1,23 +1,32 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function EditCategory() {
     const [category_name, setCategory_name] = useState("");
 
     const { id } = useParams();
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/category/${id}`)
+        axios.get(`http://localhost:8080/category/${id}`, config)
             .then(response => {
                 setCategory_name(response.data.category_name);
             })
             .catch(error => {
                 console.log(error);
             });
-    }, [id]);
+    }, [id, isAuthenticated]);
 
     function clearCategory() {
         setCategory_name("");
@@ -30,7 +39,7 @@ function EditCategory() {
             category_name: category_name,
         }
 
-        axios.put(`http://localhost:8080/category/${id}`, data)
+        axios.put(`http://localhost:8080/category/${id}`, data, config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("Category Edit Successfully..!");
@@ -49,7 +58,7 @@ function EditCategory() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">

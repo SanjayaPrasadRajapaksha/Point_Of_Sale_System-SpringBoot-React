@@ -1,15 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import {  useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function Category() {
     const [category, setCategory] = useState();
     const navigate = useNavigate()
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/categories')
+        axios.get('http://localhost:8080/categories', config)
 
             .then(function (response) {
                 setCategory(response.data)
@@ -18,8 +26,8 @@ function Category() {
             })
             .catch(function (error) {
                 console.log(error)
-            }, [])
-    })
+            })
+    }, [isAuthenticated])
 
     return (
         <div>
@@ -33,7 +41,7 @@ function Category() {
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE CATEGORIES</h3>
                                     <div className="text-right d-flex justify-content-end">
                                         <button type="button" class="btn btn-primary" onClick={() => {
-                                            navigate('/createCategory')
+                                            navigate('/categories/createCategory')
                                         }}>Create Category</button>
                                     </div>
                                     <br />
@@ -60,7 +68,7 @@ function Category() {
                                                                 &nbsp;
                                                                 &nbsp;
                                                                 <button className='btn btn-danger' onClick={() => {
-                                                                    axios.delete(`http://localhost:8080/category/${category.category_id}`)
+                                                                    axios.delete(`http://localhost:8080/category/${category.category_id}`, config)
                                                                         .then(function (response) {
 
                                                                             setCategory();

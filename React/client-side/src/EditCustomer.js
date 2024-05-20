@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function EditCustomer() {
     const [title, setTitle] = useState("");
@@ -13,9 +14,17 @@ function EditCustomer() {
 
     const { id } = useParams();
 
+    const { isAuthenticated, jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/customer/${id}`)
+        axios.get(`http://localhost:8080/customer/${id}`, config)
             .then(response => {
                 setTitle(response.data.title);
                 setName(response.data.name);
@@ -26,7 +35,7 @@ function EditCustomer() {
             .catch(error => {
                 console.log(error);
             });
-    }, [id]);
+    }, [id, isAuthenticated]);
 
     function clearCustomer() {
         setTitle("");
@@ -47,7 +56,7 @@ function EditCustomer() {
             address: address
         }
 
-        axios.put(`http://localhost:8080/customer/${id}`, data)
+        axios.put(`http://localhost:8080/customer/${id}`, data, config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("Customer Edit Successfully..!");
@@ -83,7 +92,7 @@ function EditCustomer() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pointofsalesystem.dto.CreateOrderDto;
 import com.pointofsalesystem.dto.OrderedProductDto;
 
 import com.pointofsalesystem.entity.Customer;
@@ -47,10 +48,10 @@ public class OrderController {
 
     }
 
-    @PostMapping("/orders/{id}")
-    public ResponseEntity<Order> createOrder(@PathVariable long id)  {
+    @PostMapping("/order")
+    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderDto createOrderDto)  {
 
-        Customer customer = customerService.getCustomerById(id);
+        Customer customer = customerService.getCustomerById(createOrderDto.getCustomer_id());
 
         if(customer == null) {
             return ResponseEntity.status(404).build();
@@ -84,7 +85,7 @@ public class OrderController {
         orderService.deleteOrder(id);
     }
 
-    @PostMapping("order/{id}")
+    @GetMapping("/placeOrder/{id}")
     public ResponseEntity<Order> completeOrder(@PathVariable long id) {
 
         Order order = orderService.completeOrder(true, id);

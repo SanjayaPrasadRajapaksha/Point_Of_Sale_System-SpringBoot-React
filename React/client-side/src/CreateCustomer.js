@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function CreateCustomer() {
     const [title, setTitle] = useState("");
@@ -9,6 +10,14 @@ function CreateCustomer() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+
+    const { jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
 
     function createCustomer(event) {
         event.preventDefault();
@@ -21,7 +30,7 @@ function CreateCustomer() {
             address: address
         }
 
-        axios.post("http://localhost:8080/customer", data)
+        axios.post("http://localhost:8080/customer", data,config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Customer Create Successfully..!");

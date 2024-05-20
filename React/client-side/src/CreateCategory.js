@@ -1,10 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 function CreateCategory() {
     const [category_name, setCategory_name] = useState("");
+
+    const { jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
 
     function createCategory(event) {
         event.preventDefault();
@@ -14,7 +23,8 @@ function CreateCategory() {
 
         }
 
-        axios.post("http://localhost:8080/category", data)
+
+        axios.post("http://localhost:8080/category", data,config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Category Create Successfully..!");

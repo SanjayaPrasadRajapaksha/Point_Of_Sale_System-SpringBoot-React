@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
+import { useAuth } from './utils/AuthContext';
 
 
 
@@ -18,6 +19,13 @@ function CreateUser() {
 
     const [uploadedImageUrl, setUploadedImageUrl] = useState('');
 
+    const { jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
     function createUser(event) {
         event.preventDefault();
 
@@ -30,7 +38,7 @@ function CreateUser() {
             imageUrl: uploadedImageUrl
         }
 
-        axios.post("http://localhost:8080/user", data)
+        axios.post("http://localhost:8080/user", data, config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("User Create Successfully..!");
@@ -97,7 +105,7 @@ function CreateUser() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
@@ -107,11 +115,11 @@ function CreateUser() {
                                     <div className='text-right d-flex justify-content-between '>
                                         <h3 class="mb-3  pb-md-0 mb-md-4">Create User Form</h3>
                                         &nbsp;&nbsp;
-                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width:"110px", borderRadius: "100%",marginRight:"65px" }} />}
+                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />}
                                     </div>
-                                   
+
                                     <form onSubmit={formik.handleSubmit}>
-                                        <input  type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
+                                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
 
                                         {formik.errors.image && (
                                             <p style={{ color: 'red' }}>{formik.errors.image}</p>
@@ -119,14 +127,14 @@ function CreateUser() {
 
                                         <button type='Submit' className='btn btn-success'>Upload</button>
                                     </form>
-                                    <br/>
+                                    <br />
                                     <form onSubmit={createUser} id='createUser'>
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
 
                                                 <div class="form-outline">
                                                     <label class="form-label" for="username">Username</label>
-                                                    <input  type="text" id="username" class="form-control border-primary form-control-lg" required onChange={handleUsername} />
+                                                    <input type="text" id="username" class="form-control border-primary form-control-lg" required onChange={handleUsername} />
                                                 </div>
 
                                             </div>

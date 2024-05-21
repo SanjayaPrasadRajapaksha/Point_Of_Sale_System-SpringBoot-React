@@ -70,8 +70,17 @@ function Category() {
                                                                 <button className='btn btn-danger' onClick={() => {
                                                                     axios.delete(`http://localhost:8080/category/${category.category_id}`, config)
                                                                         .then(function (response) {
+                                                                            axios.get('http://localhost:8080/categories', config)
 
-                                                                            setCategory();
+                                                                            .then(function (response) {
+                                                                                setCategory(response.data)
+                                                                                console.log(response.data)
+                                                                
+                                                                            })
+                                                                            .catch(function (error) {
+                                                                                console.log(error)
+                                                                            })
+
                                                                         })
                                                                         .catch(function (error) {
                                                                             console.log(error)

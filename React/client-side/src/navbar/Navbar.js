@@ -26,7 +26,7 @@ function Navbar() {
                 console.log(err)
             });
 
-    },[isAuthenticated])
+    }, [isAuthenticated])
     return (
 
         <header className='header navbar body'>
@@ -58,6 +58,12 @@ function Navbar() {
 
                 <Link to='/customers'>
                     <span className='navIcon'> Customers</span>
+                </Link>
+
+                &nbsp;&nbsp;
+
+                <Link to='/customers'>
+                    <span className='navIcon'> Users</span>
                 </Link>
 
             </div>

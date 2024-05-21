@@ -48,7 +48,6 @@ public class CategoryController {
     public Category updateCategory(@PathVariable long id, @RequestBody Category category) {
 
         return categoryService.updateCategory(category, id);
-
         
     }
 

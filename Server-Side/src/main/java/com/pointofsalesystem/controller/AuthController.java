@@ -35,7 +35,7 @@ public class AuthController {
     private UserImagePreviewService userImagePreviewService;
 
     @PostMapping("/auth/login")
-    public String postMethodName(@RequestBody LoginDto loginDto) {
+    public String login(@RequestBody LoginDto loginDto) {
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));

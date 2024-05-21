@@ -5,11 +5,10 @@ import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillGiftFill }
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
   from 'recharts';
 import { useAuth } from '../utils/AuthContext';
-import { Navigate, useNavigate } from 'react-router-dom';
+
 
 function Home() {
 
-  const navigate = useNavigate();
   const { isAuthenticated, jwtToken } = useAuth();
 
   const config = {
@@ -23,6 +22,7 @@ function Home() {
   const [cusromer, setCusromer] = useState('');
   const [categories, setCategories] = useState('');
 
+  
   useEffect(() => {
     if (isAuthenticated) {
       axios.get('http://localhost:8080/products', config)

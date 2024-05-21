@@ -30,7 +30,7 @@ function EditProduct() {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/product/${id}`,config)
+        axios.get(`http://localhost:8080/product/${id}`, config)
             .then(response => {
                 setName(response.data.name);
                 setPrice(response.data.price);
@@ -43,7 +43,7 @@ function EditProduct() {
                 console.log(error);
             });
 
-        axios.get('http://localhost:8080/categories',config)
+        axios.get('http://localhost:8080/categories', config)
             .then(response => {
                 setCategory(response.data);
 
@@ -72,7 +72,7 @@ function EditProduct() {
             imageUrl: (uploadedImageUrl == null) ? imageUrl : uploadedImageUrl
         }
 
-        axios.put(`http://localhost:8080/product/${id}`, data,config)
+        axios.put(`http://localhost:8080/product/${id}`, data, config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("Product Edit Successfully..!");
@@ -134,22 +134,22 @@ function EditProduct() {
     });
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-9 col-xl-7">
                             <div class="card shadow-lg card-registration round" >
                                 <div class="card-body">
-                                <div className='text-right d-flex justify-content-between'>
+                                    <div className='text-right d-flex justify-content-between'>
                                         <h3 class="mb-5 ">Edit Product Form</h3>
-                                        <br/>
-                                       {
-                                        !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%",marginRight:"65px"  }} />
-                                       }
-                                       {
-                                        uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%",marginRight:"65px"  }} />
-                                       }
+                                        <br />
+                                        {
+                                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
+                                        }
+                                        {
+                                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
+                                        }
                                     </div>
                                     <form onSubmit={formik.handleSubmit}>
                                         <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
@@ -160,7 +160,7 @@ function EditProduct() {
 
                                         <button type='Submit' className='btn btn-success'>Upload</button>
                                     </form>
-                                    <br/>
+                                    <br />
                                     <form onSubmit={updateProduct} id='updateProduct'>
 
                                         <div class="row">
@@ -196,7 +196,7 @@ function EditProduct() {
                                             <div class="col-md-6 mb-4">
                                                 <label class="form-label select-label">Category</label>
                                                 <select class="select form-control-lg border-primary" onChange={handleCategory} required>
-                                                <option value="1" disabled>Choose your option</option>
+                                                    <option value="1" disabled>Choose your option</option>
 
                                                     {category && category.map(category => {
                                                         return (

@@ -1,13 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import {
     BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
-    BsBoxArrowRight, BsBoxArrowLeft, BsPersonCircle, BsFillGiftFill} from 'react-icons/bs'
+    BsBoxArrowRight, BsBoxArrowLeft, BsPersonCircle, BsFillGiftFill
+} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../utils/AuthContext'
+import axios from 'axios';
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
     const { isAuthenticated, logout } = useAuth();
+
     const { jwtToken } = useAuth();
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${jwtToken}`
+        }
+    }
+
+    const [useimgUrl, setUseimgUrls] = useState('');
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:8080/imagePreview/${1}`, config)
+            .then(res => {
+                setUseimgUrls(res.data.imageUrl)
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+
+    },[isAuthenticated])
 
     return (
 
@@ -16,7 +40,14 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
             <div className='sidebar-title'>
                 <div className='sidebar-brand companyName'>
-                    POS System
+                    <div>
+                        POS System
+                    </div>
+                    <br />
+                    <div >
+                        <img src={useimgUrl} alt="Uploaded" style={{ height: "80px", width: "80px", borderRadius: "100%" }} />
+                    </div>
+
                 </div>
                 <span className='icon close_icon' onClick={OpenSidebar}>X</span>
 

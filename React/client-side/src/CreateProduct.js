@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -15,10 +15,7 @@ function CreateProduct() {
 
     const [uploadedImageUrl, setUploadedImageUrl] = useState('');
 
-    const [products, setProducts] = useState();
-    const navigate = useNavigate()
-
-    const { isAuthenticated, jwtToken } = useAuth();
+    const { jwtToken } = useAuth();
     console.log(jwtToken);
     const config = {
         headers: {
@@ -27,7 +24,7 @@ function CreateProduct() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/categories",config)
+        axios.get("http://localhost:8080/categories", config)
             .then(response => {
                 setCategories(response.data);
                 console.log(response.data);
@@ -47,7 +44,7 @@ function CreateProduct() {
             category_id: category_id
         }
 
-        axios.post("http://localhost:8080/product", data,config)
+        axios.post("http://localhost:8080/product", data, config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Product Create Successfully..!");
@@ -108,7 +105,7 @@ function CreateProduct() {
         }
     });
 
-   
+
     return (
         <div>
             <Navbar />
@@ -180,7 +177,6 @@ function CreateProduct() {
                                                     }
 
                                                 </select>
-
 
                                             </div>
                                         </div>

@@ -51,7 +51,7 @@ a {
   line-height: 1px;
   font-size: 20px;
   text-decoration: none !important;
-  color: #00FFFF!important;
+  color: #00FFFF !important;
 }
 
 .navIcon:hover {
@@ -64,6 +64,7 @@ a {
   font-size: 20px;
   text-decoration: underline !important;
 }
+
 /* dashboard */
 
 .grid-container {
@@ -118,11 +119,12 @@ a {
   height: 100vh;
 }
 
-.dateTime{
+.dateTime {
   margin-right: 5px;
   color: white;
   font-size: 19px;
 }
+
 /* Header  */
 .header {
   grid-area: header;
@@ -136,6 +138,10 @@ a {
 
 .menu-icon {
   display: none;
+}
+
+.emailFontColor {
+  color: white;
 }
 
 /* End Header  */
@@ -187,7 +193,7 @@ a {
 .slideIcon,
 .companyName {
   text-decoration: none;
-  color:#00FFFF;
+  color: #00FFFF;
 }
 
 .sidebar-responsive {
@@ -315,16 +321,13 @@ a {
 /* login */
 
 .bground {
-  /* fallback for old browsers */
   background-color: #508bfc;
 
-  /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to right, rgb(157, 202, 202), rgba(37, 117, 252, 1));
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgb(140, 86, 197), rgba(37, 117, 252, 1))
 }
 
-.formBackground{
+.formBackground {
   background-color: white !important;
 }

@@ -24,7 +24,7 @@ function CreateCategory() {
         }
 
 
-        axios.post("http://localhost:8080/category", data,config)
+        axios.post("http://localhost:8080/category", data, config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Category Create Successfully..!");
@@ -44,14 +44,14 @@ function CreateCategory() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container py-2 h-100 ">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-12 col-lg-9 col-xl-7">
                             <div class="card shadow-lg card-registration round" >
                                 <div class="card-body">
-                                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create Category Form</h3>
+                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create Category Form</h3>
                                     <form onSubmit={createCategory} id='createCategory'>
 
                                         <div class="row">

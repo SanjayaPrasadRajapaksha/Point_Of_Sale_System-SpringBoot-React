@@ -30,7 +30,7 @@ function CreateCustomer() {
             address: address
         }
 
-        axios.post("http://localhost:8080/customer", data,config)
+        axios.post("http://localhost:8080/customer", data, config)
             .then(response => {
                 if (response.request.status === 201) {
                     alert("Customer Create Successfully..!");
@@ -65,7 +65,7 @@ function CreateCustomer() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <section class="vh-100 gradient-custom">
                 <div class="container h-100 ">
                     <div class="row justify-content-center align-items-center h-100">

@@ -30,14 +30,9 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user = userService.getUserById(id);
+    public User getUserById(@PathVariable long id) {
+        return userService.getUserById(id);
 
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.status(200).body(user);
     }
 
     @PostMapping("/user")
@@ -58,6 +53,18 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/findUser/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
+
+        if (user == null) {
+            return ResponseEntity.status(404).build();
+        } else {
+            return ResponseEntity.status(200).body(user);
+        }
+
     }
 
 }

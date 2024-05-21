@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
 
@@ -8,8 +8,8 @@ import { useAuth } from './utils/AuthContext';
 function Order() {
 
     const [orders, setOrders] = useState(null);
-    const [ customer, setCustomer ] = useState('');
-    const [ customer_id, setCustomer_id ] = useState('');
+    const [customer, setCustomer] = useState('');
+    const [customer_id, setCustomer_id] = useState('');
     const navigate = useNavigate()
 
     const { isAuthenticated, jwtToken } = useAuth();
@@ -21,7 +21,7 @@ function Order() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/orders',config)
+        axios.get('http://localhost:8080/orders', config)
 
             .then(function (response) {
                 setOrders(response.data)
@@ -32,10 +32,10 @@ function Order() {
                 console.log(error)
             }, [isAuthenticated])
     })
- 
-function handleCustomer_id (event) {
-    setCustomer_id(event.target.value);
-}
+
+    function handleCustomer_id(event) {
+        setCustomer_id(event.target.value);
+    }
 
     return (
         <div>
@@ -54,13 +54,13 @@ function handleCustomer_id (event) {
                                             &nbsp;
                                             <button type='button' className='btn btn-secondary' onClick={() => {
 
-                                                axios.get(`http://localhost:8080/customer/${customer_id}`,config)
+                                                axios.get(`http://localhost:8080/customer/${customer_id}`, config)
                                                     .then(function (response) {
-                                                      setCustomer(response.data);
+                                                        setCustomer(response.data);
                                                     })
                                                     .catch(function (error) {
                                                         alert("Invalid Customer ID: " + customer_id)
-                                                       
+
                                                     });
                                             }}
                                             >Search</button>
@@ -77,9 +77,9 @@ function handleCustomer_id (event) {
                                                 e.preventDefault();
 
                                                 const data = {
-                                                    customer_id : customer.id
+                                                    customer_id: customer.id
                                                 }
-                                                axios.post('http://localhost:8080/order',data,config)
+                                                axios.post('http://localhost:8080/order', data, config)
                                                     .then(function (response) {
                                                         navigate(`/orders/${response.data.id}/editOrder`)
                                                     })
@@ -111,7 +111,7 @@ function handleCustomer_id (event) {
                                                     return (
                                                         <tr className='text-center'>
                                                             <td>{orders.id}</td>
-                                                           
+
                                                             <td>{orders.customer?.title}.{orders.customer?.name}</td>
                                                             <td>{orders.customer.address}</td>
                                                             <td>{orders.orderDate}</td>
@@ -127,7 +127,7 @@ function handleCustomer_id (event) {
                                                                 &nbsp;
                                                                 &nbsp;
                                                                 <button className='btn btn-danger' onClick={() => {
-                                                                    axios.delete(`http://localhost:8080/order/${orders.id}`,config)
+                                                                    axios.delete(`http://localhost:8080/order/${orders.id}`, config)
                                                                         .then(function (response) {
 
                                                                             setOrders();

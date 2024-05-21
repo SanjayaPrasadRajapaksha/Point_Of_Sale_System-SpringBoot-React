@@ -18,7 +18,7 @@ function EditUser() {
 
     const { id } = useParams();
 
-    const { isAuthenticated, jwtToken } = useAuth();
+    const { jwtToken } = useAuth();
 
     const config = {
         headers: {
@@ -30,7 +30,7 @@ function EditUser() {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/${id}`,config)
+        axios.get(`http://localhost:8080/user/${id}`, config)
             .then(response => {
                 setUsername(response.data.username);
                 setPassword(response.data.password);
@@ -38,6 +38,8 @@ function EditUser() {
                 setPhone(response.data.phone);
                 setAddress(response.data.address);
                 setImageUrl(response.data.imageUrl);
+
+                console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
@@ -64,7 +66,7 @@ function EditUser() {
             imageUrl: (uploadedImageUrl == null) ? imageUrl : uploadedImageUrl
         }
 
-        axios.put(`http://localhost:8080/user/${id}`, data,config)
+        axios.put(`http://localhost:8080/user/${id}`, data, config)
             .then(response => {
                 if (response.request.status === 200) {
                     alert("User Edit Successfully..!");
@@ -140,10 +142,10 @@ function EditUser() {
                                     <div className='text-right d-flex justify-content-between'>
                                         <h3 class="mb-5 pb-md-0 mb-md-5">Edit User Form</h3>
                                         {
-                                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%" ,marginRight:"65px"  }} />
+                                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
                                         }
                                         {
-                                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%" , marginRight:"65px"  }} />
+                                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
                                         }
                                     </div>
                                     <form onSubmit={formik.handleSubmit}>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
+import Header from './dashboard/Header';
+import Sidebar from './dashboard/Sidebar';
 
 function EditOrder() {
 
@@ -81,157 +83,160 @@ function EditOrder() {
                 console.log(error)
             });
     }
+
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
     return (
-        <div>
-            <Navbar />
-            <section class="vh-100 gradient-custom scroll">
-                <div class="container py-2 h-100 ">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 col-mb-12">
-                            <div class="card shadow-lg card-registration round" >
-                                <div class="card-body">
-                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Product to Order #{id}</h3>
-                                    {order &&
-                                        <div>
-                                            <div className='d-flex align-item-center justify-content-between'>
-                                                <div>
-                                                    <h5>Date & Time : {order.orderDate}</h5>
-                                                </div>
-                                                <div>
-                                                    <h5>Customer Name : {order.customer.name}</h5>
-                                                </div>
-                                                <div>
-                                                    <h5>Total Price : Rs. {order.totalPrice}</h5>
-                                                </div>
-                                            </div>
+        <div className='grid-container'>
+        <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+        <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <main class="main-container" >
+                <div class="main-card shadow  bg-white rounded" style={{ padding: "25px" }}>
+                    <div className=' mb-4 pb-md-0 mb-md-5' style={{ borderRadius: '1rem', maxWidth: '800px' }}>
+                    <h3 class="">Add Product to Order #{id}</h3>
+                    </div>
+                    
+                    {order &&
+                        <div>
+                            <div className='d-flex align-item-center justify-content-between'>
+                                <div>
+                                    <h5>Date & Time : {order.orderDate}</h5>
+                                </div>
+                                <div>
+                                    <h5>Customer Name : {order.customer.name}</h5>
+                                </div>
+                                <div>
+                                    <h5>Total Price : Rs. {order.totalPrice}</h5>
+                                </div>
+                            </div>
 
-                                            <div className='row '>
-                                                <div className='col-md-9 scroll-2 text-center'>
-                                                    <table className='table table-striped'>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>Name</th>
-                                                                <th>Price</th>
-                                                            </tr>
-                                                        </thead>
+                            <div className='row '>
+                                <div className='col-md-9 scroll-2 text-center'>
+                                    <table className='table table-striped'>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
 
-                                                        <tbody>
-                                                            {
-                                                                order && order.orderedProducts.map((product) => {
-                                                                    return (
-                                                                        <tr>
-                                                                            <td>{product.id}</td>
-                                                                            <td>{product.name}</td>
-                                                                            <td>{product.price}</td>
-                                                                        </tr>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </tbody>
+                                        <tbody>
+                                            {
+                                                order && order.orderedProducts.map((product) => {
+                                                    return (
+                                                        <tr>
+                                                            <td>{product.id}</td>
+                                                            <td>{product.name}</td>
+                                                            <td>{product.price}</td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
 
-                                                    </table>
+                                    </table>
 
-                                                </div>
+                                </div>
 
-                                                <div className='col-md-3'>
-                                                    <div className='scroll-2 justify-content-center align-items-center'>
-                                                        {
-                                                            product && product.map((product) => {
-                                                                return (
-                                                                    <div key={product.id}>
+                                <div className='col-md-3'>
+                                    <div className='scroll-2 justify-content-center align-items-center'>
+                                        {
+                                            product && product.map((product) => {
+                                                return (
+                                                    <div key={product.id}>
 
-                                                                        <div className='product p-3 bg-light shadow-sm mb-3 rounded'>
+                                                        <div className='product p-3 bg-light shadow-sm mb-3 rounded'>
 
-                                                                            <h5>{product.name}</h5>
+                                                            <h5>{product.name}</h5>
 
-                                                                            <div className='product-price'>
-                                                                                Rs. {product.price}
-                                                                            </div>
+                                                            <div className='product-price'>
+                                                                Rs. {product.price}
+                                                            </div>
 
-                                                                            <div className='product-price'>
-                                                                                Qty : {product.quantity}
-                                                                            </div>
-                                                                            <div>
+                                                            <div className='product-price'>
+                                                                Qty : {product.quantity}
+                                                            </div>
+                                                            <div>
 
-                                                                                <input size={7} className='justify-content: center' placeholder='quantity' id='qty_field' onChange={handleQty} />
+                                                                <input size={7} className='justify-content: center' placeholder='quantity' id='qty_field' onChange={handleQty} />
 
-                                                                                &nbsp;
+                                                                &nbsp;
 
-                                                                                <button className='btn btn-primary' id='addBtn' onClick={() => {
-
-
-                                                                                    if ((product.quantity - quantity) < 0 || product.quantity === 0) {
-                                                                                        alert("Product is out of stock");
+                                                                <button className='btn btn-primary' id='addBtn' onClick={() => {
 
 
-                                                                                    } else {
-
-                                                                                        const data = {
-                                                                                            product_id: product.id,
-                                                                                            quantity: quantity
-                                                                                        }
-                                                                                        axios.post(`http://localhost:8080/order/${id}/addProduct`, data, config)
-                                                                                            .then(function (response) {
-                                                                                                setOrder(response.data);
-                                                                                                alert("Product Add Successfully..!")
-
-                                                                                            })
-                                                                                            .catch(function (error) {
-                                                                                                alert("Product Add Fail..!")
-                                                                                                console.log(error);
-                                                                                            });
-
-                                                                                        const productData = {
-                                                                                            product_id: product.id,
-                                                                                            name: product.name,
-                                                                                            price: product.price,
-                                                                                            quantity: product.quantity - quantity,
-                                                                                            category_id: product.category?.category_id,
-                                                                                            imageUrl: product.imageUrl
-                                                                                        }
-
-                                                                                        axios.put('http://localhost:8080/product/' + product.id, productData, config)
-                                                                                            .then(function (response) {
-                                                                                                refreshProducts();
-
-                                                                                            })
-                                                                                            .catch(function (err) {
-                                                                                                console.log(err);
-                                                                                            });
-                                                                                    }
+                                                                    if ((product.quantity - quantity) < 0 || product.quantity === 0) {
+                                                                        alert("Product is out of stock");
 
 
-                                                                                }}>Add</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                )
-                                                            })
-                                                        }
+                                                                    } else {
 
+                                                                        const data = {
+                                                                            product_id: product.id,
+                                                                            quantity: quantity
+                                                                        }
+                                                                        axios.post(`http://localhost:8080/order/${id}/addProduct`, data, config)
+                                                                            .then(function (response) {
+                                                                                setOrder(response.data);
+                                                                                alert("Product Add Successfully..!")
+
+                                                                            })
+                                                                            .catch(function (error) {
+                                                                                alert("Product Add Fail..!")
+                                                                                console.log(error);
+                                                                            });
+
+                                                                        const productData = {
+                                                                            product_id: product.id,
+                                                                            name: product.name,
+                                                                            price: product.price,
+                                                                            quantity: product.quantity - quantity,
+                                                                            category_id: product.category?.category_id,
+                                                                            imageUrl: product.imageUrl
+                                                                        }
+
+                                                                        axios.put('http://localhost:8080/product/' + product.id, productData, config)
+                                                                            .then(function (response) {
+                                                                                refreshProducts();
+
+                                                                            })
+                                                                            .catch(function (err) {
+                                                                                console.log(err);
+                                                                            });
+                                                                    }
+
+
+                                                                }}>Add</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                )
+                                            })
+                                        }
 
-                                                </div>
-
-                                            </div>
-                                            <br />
-                                            <div className='d-flex justify-content-between'>
-                                                <Link to='/orders' className='back'>back</Link>
-                                                <button className=' btn btn-success text-right d-flex justify-content-end' onClick={placeOrder}>Place order</button>
-                                            </div>
-
-                                        </div>
-
-                                    }
+                                    </div>
 
                                 </div>
 
                             </div>
+                            <br />
+                            <div className='d-flex justify-content-between'>
+                                <Link to='/orders' className='back'>back</Link>
+                                <button className=' btn btn-success text-right d-flex justify-content-end' onClick={placeOrder}>Place order</button>
+                            </div>
+
                         </div>
-                    </div>
+
+                    }
+
                 </div>
-            </section>
+
+            </main>
+
         </div>
     )
 }

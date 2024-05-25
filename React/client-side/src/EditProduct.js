@@ -6,6 +6,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
+import Header from './dashboard/Header';
+import Sidebar from './dashboard/Sidebar';
 function EditProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
@@ -132,104 +134,104 @@ function EditProduct() {
             }
         }
     });
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
     return (
-        <div>
-            <Navbar />
-            <section class="vh-100 gradient-custom">
-                <div class="container py-2 h-100">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 col-lg-9 col-xl-7">
-                            <div class="card shadow-lg card-registration round" >
-                                <div class="card-body">
-                                    <div className='text-right d-flex justify-content-between'>
-                                        <h3 class="mb-5 ">Edit Product Form</h3>
-                                        <br />
-                                        {
-                                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
-                                        }
-                                        {
-                                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
-                                        }
-                                    </div>
-                                    <form onSubmit={formik.handleSubmit}>
-                                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
+        <div className='grid-container'>
+        <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+        <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <main class="main-container" >
+                <div class="main-card shadow  bg-white rounded" style={{ padding: "25px" }}>
+                    <div className='text-right d-flex justify-content-between' style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
+                        <h3 class="mb-5 ">Edit Product Form</h3>
+                        <br />
+                        {
+                            !uploadedImageUrl && <img src={imageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
+                        }
+                        {
+                            uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />
+                        }
+                    </div>
+                    <form onSubmit={formik.handleSubmit}  style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
+                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
 
-                                        {formik.errors.image && (
-                                            <p style={{ color: 'red' }}>{formik.errors.image}</p>
-                                        )}
+                        {formik.errors.image && (
+                            <p style={{ color: 'red' }}>{formik.errors.image}</p>
+                        )}
 
-                                        <button type='Submit' className='btn btn-success'>Upload</button>
-                                    </form>
-                                    <br />
-                                    <form onSubmit={updateProduct} id='updateProduct'>
+                        <button type='Submit' className='btn btn-success'>Upload</button>
+                    </form >
+                    <br />
+                    <form onSubmit={updateProduct} id='updateProduct' style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
 
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
 
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="price">Price</label>
-                                                    <input type="text" id="price" class="form-control form-control-lg border-primary" required onChange={handlePrice} value={price} />
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="quantity">Quantity</label>
-                                                    <input type="text" id="quantity" class="form-control form-control-lg border-primary" required onChange={handleQuantity} value={quantity} />
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <label class="form-label select-label">Category</label>
-                                                <select class="select form-control-lg border-primary" onChange={handleCategory} required>
-                                                    <option value="1" disabled>Choose your option</option>
-
-                                                    {category && category.map(category => {
-                                                        return (
-                                                            <option key={category.category_id} value={category.category_id} selected={category_id === category.category_id}>{category.category_name}</option>
-                                                        )
-                                                    })
-
-                                                    }
-
-                                                </select>
-
-
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-2 pt-2 ">
-                                            <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
-                                                clearProduct();
-                                            }} required >Reset</button>
-                                            <br />
-                                            <br />
-                                            <Link to='/products' class='back'>back</Link>
-                                        </div>
-
-                                    </form>
+                                <div class="form-outline">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
                                 </div>
+
+                            </div>
+                            <div class="col-md-6 mb-4">
+
+                                <div class="form-outline">
+                                    <label class="form-label" for="price">Price</label>
+                                    <input type="text" id="price" class="form-control form-control-lg border-primary" required onChange={handlePrice} value={price} />
+
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+
+                                <div class="form-outline">
+                                    <label class="form-label" for="quantity">Quantity</label>
+                                    <input type="text" id="quantity" class="form-control form-control-lg border-primary" required onChange={handleQuantity} value={quantity} />
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="form-label select-label">Category</label>
+                                <br />
+                                <select class="select form-control-lg border-primary" onChange={handleCategory} required>
+                                    <option value="1" disabled>Choose your option</option>
+
+                                    {category && category.map(category => {
+                                        return (
+                                            <option key={category.category_id} value={category.category_id} selected={category_id === category.category_id}>{category.category_name}</option>
+                                        )
+                                    })
+
+                                    }
+
+                                </select>
+
+
+                            </div>
+                        </div>
+
+                        <div class="mt-2 pt-2 ">
+                            <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
+                                clearProduct();
+                            }} required >Reset</button>
+                            <br />
+                            <br />
+                            <Link to='/products' class='back'>back</Link>
+                        </div>
+
+                    </form>
                 </div>
-            </section>
+            </main>
+
         </div>
     )
 }

@@ -26,7 +26,7 @@ function Login() {
         axios.post('http://localhost:8080/auth/login', data)
             .then(response => {
                 login(response.data);
-                navigate('/');
+                navigate('/home');
             })
             .catch(err => {
                 alert("Login fail..!");
@@ -67,10 +67,9 @@ function Login() {
                                             </div>
                                             <br />
                                             <div className='col-md-12 mb-12'>
-                                                <button type='submit' className='btn btn-primary'>login</button>
-                                            </div>
-                                            <div>
-                                                <Link to='/' class='back'>back</Link>
+
+                                            <button class="btn btn-primary" type="submit" >Submit</button>
+
                                             </div>
 
                                         </div>

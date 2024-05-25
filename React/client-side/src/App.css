@@ -134,14 +134,18 @@ a {
   justify-content: space-between;
   padding: 0 30px 0 30px !important;
   border-color: #191970 !important;
+ 
 }
-
+ .icon {
+  font-size: 20px !important;
+ }
 .menu-icon {
   display: none;
 }
 
 .emailFontColor {
   color: white;
+  font-size: 20px;
 }
 
 /* End Header  */
@@ -171,7 +175,7 @@ a {
 
 .sidebar-brand {
   margin-top: 15px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -182,7 +186,7 @@ a {
 
 .sidebar-list-item {
   padding: 20px 20px 20px 20px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .sidebar-list-item:hover {

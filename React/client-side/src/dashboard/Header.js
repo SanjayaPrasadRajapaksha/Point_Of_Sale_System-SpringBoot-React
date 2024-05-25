@@ -39,7 +39,6 @@ function Header({ OpenSidebar }) {
 
     const formattedDate = currentDate.toLocaleString();
     return (
-
         <header className='header shadow-lg'>
             <div className='menu-icon'>
                 <BsJustify className='icon' onClick={OpenSidebar} />

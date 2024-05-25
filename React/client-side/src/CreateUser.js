@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
+import Header from './dashboard/Header';
+import Sidebar from './dashboard/Sidebar';
 
 
 
@@ -102,101 +104,99 @@ function CreateUser() {
             }
         }
     });
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
     return (
-        <div>
-            <Navbar />
-            <section class="vh-100 gradient-custom">
-                <div class="container h-100 ">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 col-lg-9 col-xl-7">
-                            <div class="card shadow-lg card-registration round" >
-                                <div class="card-body">
-                                    <div className='text-right d-flex justify-content-between '>
-                                        <h3 class="mb-3  pb-md-0 mb-md-4">Create User Form</h3>
-                                        &nbsp;&nbsp;
-                                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />}
-                                    </div>
+        <div className='grid-container'>
+        <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+        <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+        <main class="main-container" >
+            <div class="main-card shadow  bg-white rounded" style={{ padding: "25px" }}>
+                <div className='text-right d-flex justify-content-between ' style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
+                        <h3 class="mb-3  pb-md-0 mb-md-4">Create User Form</h3>
+                        &nbsp;&nbsp;
+                        {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" style={{ height: "110px", width: "110px", borderRadius: "100%", marginRight: "65px" }} />}
+                    </div>
 
-                                    <form onSubmit={formik.handleSubmit}>
-                                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
+                    <form onSubmit={formik.handleSubmit}  style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
+                        <input type='file' name='image' onChange={(e) => formik.setFieldValue("image", e.target.files[0])} />
 
-                                        {formik.errors.image && (
-                                            <p style={{ color: 'red' }}>{formik.errors.image}</p>
-                                        )}
+                        {formik.errors.image && (
+                            <p style={{ color: 'red' }}>{formik.errors.image}</p>
+                        )}
 
-                                        <button type='Submit' className='btn btn-success'>Upload</button>
-                                    </form>
-                                    <br />
-                                    <form onSubmit={createUser} id='createUser'>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
+                        <button type='Submit' className='btn btn-success'>Upload</button>
+                    </form>
+                    <br />
+                    <form onSubmit={createUser} id='createUser'  style={{ borderRadius: '1rem', maxWidth: '800px',margin : "auto" }}>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
 
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="username">Username</label>
-                                                    <input type="text" id="username" class="form-control border-primary form-control-lg" required onChange={handleUsername} />
-                                                </div>
+                                <div class="form-outline">
+                                    <label class="form-label" for="username">Username</label>
+                                    <input type="text" id="username" class="form-control border-primary form-control-lg" required onChange={handleUsername} />
+                                </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="password">Password</label>
-                                                    <input type="password" id="password" class="form-control border-primary form-control-lg" required onChange={handlePassword} />
+                                <div class="form-outline">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" id="password" class="form-control border-primary form-control-lg" required onChange={handlePassword} />
 
-                                                </div>
+                                </div>
 
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
 
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="email" class="form-control border-primary form-control-lg" required onChange={handleEmail} />
+                                <div class="form-outline">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" id="email" class="form-control border-primary form-control-lg" required onChange={handleEmail} />
 
-                                                </div>
+                                </div>
 
-                                            </div>
-                                            <div class="col-md-6 mb-3">
+                            </div>
+                            <div class="col-md-6 mb-3">
 
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control border-primary form-control-lg" required onChange={handlePhone} />
+                                <div class="form-outline">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input type="text" id="phone" class="form-control border-primary form-control-lg" required onChange={handlePhone} />
 
-                                                </div>
+                                </div>
 
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
 
-                                        <div class="row">
-                                            <div class="col-md-12 mb-3 pb-2">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control border-primary form-control-lg" required onChange={handleAddress} />
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-2 ">
-                                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" required />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input class="btn btn-dark btn-lg" type="reset" value="Reset" required />
-                                            <br />
-                                            <br />
-                                            <Link to='/users' class='back'>back</Link>
-                                        </div>
-
-                                    </form>
+                        <div class="row">
+                            <div class="col-md-12 mb-3 pb-2">
+                                <div class="form-outline">
+                                    <label class="form-label" for="address">Address</label>
+                                    <input type="text" id="address" class="form-control border-primary form-control-lg" required onChange={handleAddress} />
 
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="mt-2 ">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" required />
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input class="btn btn-dark btn-lg" type="reset" value="Reset" required />
+                            <br />
+                            <br />
+                            <Link to='/users' class='back'>back</Link>
+                        </div>
+
+                    </form>
+
                 </div>
-            </section>
+            </main>
+
         </div>
     )
 }

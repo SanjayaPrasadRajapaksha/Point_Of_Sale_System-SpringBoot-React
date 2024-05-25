@@ -28,7 +28,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-        <Route element={<ProtectedRoutes />}>
+          <Route element={<ProtectedRoutes />}>
 
             <Route path='/users' element={<User />} />
             <Route path='/users/createUser' element={<CreateUser />} />
@@ -50,9 +50,8 @@ function App() {
             <Route path='/customers/:id/editCustomer' element={<EditCustomer />} />
           </Route>
 
-          <Route path='/login' element={<Login />} />
-
-          <Route path='/' element={<Dashboard />} />
+          <Route path='/home' element={<Dashboard />} />
+          <Route path='/' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

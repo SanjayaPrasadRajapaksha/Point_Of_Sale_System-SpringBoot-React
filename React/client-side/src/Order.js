@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
+import Header from './dashboard/Header';
+import Sidebar from './dashboard/Sidebar';
 
 
 function Order() {
@@ -36,16 +38,19 @@ function Order() {
     function handleCustomer_id(event) {
         setCustomer_id(event.target.value);
     }
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
+    
     return (
-        <div>
-            <Navbar />
-            <section class="vh-100 gradient-custom scroll">
-                <div className="container h-100">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 col-lg-12 col-xl-12 ">
-                            <div class="card shadow-lg card-registration rounded-15" >
-                                <div class="card-body p-4 p-md-5 scroll">
+
+        <div className='grid-container'>
+            <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <main className='main-container'>
+                <div class="main-card">
                                     <h3 class="mb-0 pb-0 pb-md-0 mb-md-0">MANAGE ORDERS</h3>
                                     <br />
                                     <div className="text-right d-flex justify-content-between ">
@@ -145,11 +150,8 @@ function Order() {
                                     </table>
 
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                            </main>
+               
         </div>
 
     )

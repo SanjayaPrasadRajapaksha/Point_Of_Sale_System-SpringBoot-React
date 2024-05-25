@@ -31,7 +31,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                 console.log(err)
             });
 
-    },[isAuthenticated])
+    }, [isAuthenticated])
 
     return (
 
@@ -55,52 +55,63 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             </div>
 
             <ul className='sidebar-list'>
-                <li className='sidebar-list-item'>
-                    <Link to='/' className='slideIcon'>
+                <Link to='/home' className='slideIcon'>
+                    <li className='sidebar-list-item'>
+
                         <BsGrid1X2Fill className='icon' /> Dashboard
-                    </Link>
-                </li>
 
-                <li className='sidebar-list-item'>
-                    <Link to='/orders' className='slideIcon'>
+                    </li>
+                </Link>
+                <Link to='/orders' className='slideIcon'>
+                    <li className='sidebar-list-item'>
                         <BsFillGiftFill className='icon' /> Orders
-                    </Link>
-                </li>
-                <li className='sidebar-list-item'>
-                    <Link to='/products' className='slideIcon'>
-                        <BsFillArchiveFill className='icon' /> Products
-                    </Link>
-                </li>
-                <li className='sidebar-list-item'>
-                    <Link to='/categories' className='slideIcon'>
-                        <BsFillGrid3X3GapFill className='icon' /> Categories
-                    </Link>
-                </li>
+                    </li>
+                </Link>
+                <Link to='/products' className='slideIcon'>
+                    <li className='sidebar-list-item'>
 
-                <li className='sidebar-list-item'>
-                    <Link to='/customers' className='slideIcon'>
+                        <BsFillArchiveFill className='icon' /> Products
+
+                    </li>
+                </Link>
+                <Link to='/categories' className='slideIcon'>
+                    <li className='sidebar-list-item'>
+
+                        <BsFillGrid3X3GapFill className='icon' /> Categories
+
+                    </li>
+                </Link>
+                <Link to='/customers' className='slideIcon'>
+                    <li className='sidebar-list-item'>
+
                         <BsPeopleFill className='icon' /> Customers
-                    </Link>
-                </li>
-                <li className='sidebar-list-item'>
-                    <Link to='/users' className='slideIcon'>
+
+                    </li>
+                </Link>
+                <Link to='/users' className='slideIcon'>
+                    <li className='sidebar-list-item'>
+
                         <BsPersonCircle className='icon' /> Users
-                    </Link>
-                </li>
-                <li className='sidebar-list-item'>
-                    <Link to='/login' className='slideIcon'>
+
+                    </li>
+                </Link>
+                <Link to='/' className='slideIcon'>
+                    <li className='sidebar-list-item'>
+
                         <BsBoxArrowRight className='icon' /> Login
 
 
-                    </Link>
-                </li>
-                {isAuthenticated &&
-                    <li className='sidebar-list-item'>
-                        <Link to='/login' className='slideIcon' onClick={logout}>
-                            <BsBoxArrowLeft className='icon' /> Logout
-                        </Link>
 
                     </li>
+                </Link>
+                {isAuthenticated &&
+                    <Link to='/' className='slideIcon' onClick={logout}>
+                        <li className='sidebar-list-item'>
+
+                            <BsBoxArrowLeft className='icon' /> Logout
+
+                        </li>
+                    </Link>
 
                 }
 

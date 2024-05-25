@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 import { useAuth } from './utils/AuthContext';
+import Header from './dashboard/Header';
+import Sidebar from './dashboard/Sidebar';
 
 function EditCustomer() {
     const [title, setTitle] = useState("");
@@ -89,71 +91,72 @@ function EditCustomer() {
         setAddress(event.target.value);
     };
 
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
     return (
-        <div>
-            <Navbar />
-            <section class="vh-100 gradient-custom">
-                <div class="container py-2 h-100">
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col-12 col-lg-9 col-xl-7">
-                            <div class="card shadow-lg card-registration round" >
-                                <div class="card-body">
-                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Customer Form</h3>
-                                    <form onSubmit={updateCustomer} id='updateUser'>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="title">Title</label>
-                                                    <input type="text" id="title" class="form-control form-control-lg border-primary" required onChange={handleTitle} value={title} />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="name">Name</label>
-                                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="email">Email</label>
-                                                    <input type="email" id="email" class="form-control form-control-lg border-primary" required onChange={handleEmail} value={email} />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="phone">Phone</label>
-                                                    <input type="text" id="phone" class="form-control form-control-lg border-primary" required onChange={handlePhone} value={phone} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 mb-4 pb-2">
-                                                <div class="form-outline">
-                                                    <label class="form-label" for="address">Address</label>
-                                                    <input type="text" id="address" class="form-control form-control-lg border-primary" required onChange={handleAddress} value={address} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-2 pt-2 ">
-                                            <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
-                                                clearCustomer();
-                                            }} required >Reset</button>
-                                            <br />
-                                            <br />
-                                            <Link to='/customers' class='back'>back</Link>
-                                        </div>
-                                    </form>
+        <div className='grid-container'>
+            <Header openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <div class="main-container">
+                <div class="main-card shadow  bg-white rounded" style={{ padding: "25px" }}>
+                    <div className='text-right d-flex justify-content-between' style={{ borderRadius: '1rem', maxWidth: '800px', margin: "auto" }}>
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Customer Form</h3>
+                    </div>
+
+                    <form onSubmit={updateCustomer} id='updateUser' style={{ borderRadius: '1rem', maxWidth: '800px', margin: "auto" }}>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="title">Title</label>
+                                    <input type="text" id="title" class="form-control form-control-lg border-primary" required onChange={handleTitle} value={title} />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input type="text" id="name" class="form-control form-control-lg border-primary" required onChange={handleName} value={name} />
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" id="email" class="form-control form-control-lg border-primary" required onChange={handleEmail} value={email} />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input type="text" id="phone" class="form-control form-control-lg border-primary" required onChange={handlePhone} value={phone} />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-4 pb-2">
+                                <div class="form-outline">
+                                    <label class="form-label" for="address">Address</label>
+                                    <input type="text" id="address" class="form-control form-control-lg border-primary" required onChange={handleAddress} value={address} />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 pt-2 ">
+                            <button class="btn btn-primary btn-lg" type="submit" >Submit</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-dark btn-lg" type="buttton" onClick={() => {
+                                clearCustomer();
+                            }} required >Reset</button>
+                            <br />
+                            <br />
+                            <Link to='/customers' class='back'>back</Link>
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
+
         </div>
     )
 }

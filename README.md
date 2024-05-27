@@ -1,1 +1,1 @@
-![img](https://github.com/SanjayaPrasadRajapaksha/Point_Of_Sale_System-SpringBoot-React/assets/130231733/3d744121-cfe6-47a7-b1b1-15e9e4183f4d)
+![img](https://github.com/SanjayaPrasadRajapaksha/Point_Of_Sale_System-SpringBoot-React/assets/130231733/4cd7b9d5-673c-4345-b56c-9dde09de3dc6)
